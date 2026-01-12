@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中餐厨房 - 烹饪游戏 (Chinese Kitchen - Cooking Game)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #fef6e4;
+            color: #333;
+            line-height: 1.6;
+            background-image: linear-gradient(to bottom, #fef6e4, #ffedd5);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff9966, #ff5e62);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(255, 94, 98, 0.2);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .lang-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .lang-btn.active {
+            background-color: white;
+            color: #ff5e62;
+        }
+        
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .game-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .panel {
+            background-color: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .panel-title {
+            font-size: 1.8rem;
+            color: #ff5e62;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ff9966;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .panel-title i {
+            color: #ff9966;
+        }
+        
+        /* 菜系选择区域 */
+        .cuisine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .cuisine-card {
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .cuisine-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: #ff9966;
+        }
+        
+        .cuisine-card.selected {
+            border-color: #ff5e62;
+            background: linear-gradient(145deg, #fff5f5, #ffe8e8);
+        }
+        
+        .cuisine-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ff5e62;
+        }
+        
+        .cuisine-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .cuisine-dish {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        /* 烹饪步骤区域 */
+        .step-container {
+            display: none;
+        }
+        
+        .step-container.active {
+            display: block;
+        }
+        
+        .step-title {
+            font-size: 1.6rem;
+            color: #ff5e62;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .step-counter {
+            background-color: #ff9966;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 1rem;
+        }
+        
+        .step-image {
+            width: 100%;
+            height: 250px;
+            background-color: #f8f8f8;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #ffedd5;
+        }
+        
+        .step-image-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ff9966;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .step-image-icon {
+            font-size: 5rem;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .step-image-text {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .step-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #ff9966;
+        }
+        
+        .step-interaction {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .action-btn {
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(255, 94, 98, 0.3);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 94, 98, 0.4);
+        }
+        
+        .action-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .action-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .special-action {
+            background: linear-gradient(to right, #36d1dc, #5b86e5);
+        }
+        
+        /* 食材展示区域 */
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .ingredient-item {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 15px 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .ingredient-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ingredient-item.collected {
+            background-color: #e8f7ee;
+            border: 2px solid #4CAF50;
+        }
+        
+        .ingredient-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #ff9966;
+        }
+        
+        .ingredient-item.collected .ingredient-icon {
+            color: #4CAF50;
+        }
+        
+        /* 成果展示区域 */
+        .result-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .result-title {
+            font-size: 2.2rem;
+            color: #ff5e62;
+            margin-bottom: 20px;
+        }
+        
+        .result-image {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            margin: 0 auto 30px;
+            background-color: #f8f8f8;
+            border-radius: 15px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid #ff9966;
+        }
+        
+        .result-image-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .result-image-icon {
+            font-size: 6rem;
+            color: #ff5e62;
+            margin-bottom: 20px;
+        }
+        
+        .result-image-text {
+            font-size: 1.8rem;
+            color: #ff5e62;
+            font-weight: bold;
+        }
+        
+        .result-message {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .result-rating {
+            font-size: 1.5rem;
+            color: #ff9966;
+            margin-bottom: 30px;
+        }
+        
+        /* 游戏控制区域 */
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .control-btn {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-weight: bold;
+        }
+        
+        .control-btn.primary {
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            color: white;
+        }
+        
+        .control-btn.secondary {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 音频控制 */
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            z-index: 100;
+            font-size: 1.5rem;
+            color: #ff5e62;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .game-area {
+                flex-direction: column;
+            }
+            
+            .cuisine-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .panel-title {
+                font-size: 1.5rem;
+            }
+            
+            .ingredients-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            
+            .language-switcher {
+                position: relative;
+                top: 0;
+                right: 0;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cuisine-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .game-controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="language-switcher">
+                <button class="lang-btn active" id="langCn">中文</button>
+                <button class="lang-btn" id="langEn">English</button>
+            </div>
+            <h1><i class="fas fa-utensils"></i> <span data-lang="zh">中餐厨房</span><span data-lang="en" style="display:none;">Chinese Kitchen</span></h1>
+            <p><span data-lang="zh">通过游戏体验制作经典中餐的乐趣！从八大菜系中选择一道菜肴，按照步骤烹饪，享受制作中餐的成就感。</span><span data-lang="en" style="display:none;">Experience the joy of making classic Chinese dishes through games! Choose a dish from eight major cuisines, follow the steps, and enjoy the sense of accomplishment.</span></p>
+        </header>
+        
+        <div class="game-container">
+            <!-- 菜系选择面板 -->
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-list-ul"></i> <span data-lang="zh">选择菜系和菜肴</span><span data-lang="en" style="display:none;">Select Cuisine and Dish</span>
+                </div>
+                <p style="margin-bottom: 20px;"><span data-lang="zh">请从八大菜系中选择一道你想要学习的经典菜肴：</span><span data-lang="en" style="display:none;">Please select a classic dish you want to learn from the eight major cuisines:</span></p>
+                
+                <div class="cuisine-grid" id="cuisineGrid">
+                    <!-- 菜系卡片将通过JavaScript动态生成 -->
+                </div>
+                
+                <div class="game-controls" id="startSection" style="display: none; margin-top: 30px;">
+                    <button class="control-btn primary" id="startCookingBtn">
+                        <i class="fas fa-fire"></i> <span data-lang="zh">开始烹饪</span><span data-lang="en" style="display:none;">Start Cooking</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="game-area">
+                <!-- 食材展示区域 -->
+                <div class="panel">
+                    <div class="panel-title">
+                        <i class="fas fa-carrot"></i> <span data-lang="zh">所需食材</span><span data-lang="en" style="display:none;">Required Ingredients</span>
+                    </div>
+                    <div id="ingredientsContainer">
+                        <p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">选择菜系后，将显示所需食材</p>
+                        <p style="text-align: center; padding: 30px 0; color: #888; display: none;" data-lang="en">After selecting a cuisine, required ingredients will be displayed</p>
+                    </div>
+                </div>
+                
+                <!-- 烹饪步骤区域 -->
+                <div class="panel">
+                    <div class="panel-title">
+                        <i class="fas fa-mortar-pestle"></i> <span data-lang="zh">烹饪步骤</span><span data-lang="en" style="display:none;">Cooking Steps</span>
+                    </div>
+                    <div id="stepsContainer">
+                        <p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">点击"开始烹饪"按钮后，将显示烹饪步骤</p>
+                        <p style="text-align: center; padding: 30px 0; color: #888; display: none;" data-lang="en">After clicking "Start Cooking", cooking steps will be displayed</p>
+                    </div>
+                    
+                    <div class="game-controls" id="stepControls" style="display: none;">
+                        <button class="control-btn secondary" id="prevStepBtn">
+                            <i class="fas fa-arrow-left"></i> <span data-lang="zh">上一步</span><span data-lang="en" style="display:none;">Previous</span>
+                        </button>
+                        <button class="control-btn primary" id="nextStepBtn">
+                            <span data-lang="zh">下一步</span><span data-lang="en" style="display:none;">Next</span> <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 成果展示区域 -->
+            <div class="panel" id="resultPanel" style="display: none;">
+                <div class="panel-title">
+                    <i class="fas fa-award"></i> <span data-lang="zh">烹饪成果</span><span data-lang="en" style="display:none;">Cooking Result</span>
+                </div>
+                <div id="resultContainer"></div>
+                
+                <div class="game-controls" style="margin-top: 30px;">
+                    <button class="control-btn secondary" id="restartBtn">
+                        <i class="fas fa-redo"></i> <span data-lang="zh">重新开始</span><span data-lang="en" style="display:none;">Restart</span>
+                    </button>
+                    <button class="control-btn primary" id="tryAnotherBtn">
+                        <i class="fas fa-random"></i> <span data-lang="zh">尝试另一道菜</span><span data-lang="en" style="display:none;">Try Another Dish</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 音频控制 -->
+        <div class="audio-control" id="audioControl">
+            <i class="fas fa-volume-up"></i>
+        </div>
+    </div>
+
+    <!-- 音频元素 -->
+    <audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3"></audio>
+    <audio id="sizzleSound" src="https://assets.mixkit.co/sfx/preview/mixkit-cooking-oil-and-ingredients-1712.mp3"></audio>
+    <audio id="chopSound" src="https://assets.mixkit.co/sfx/preview/mixkit-chopping-vegetables-2475.mp3"></audio>
+    <audio id="successSound" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3"></audio>
+    <audio id="bgMusic" loop src="https://assets.mixkit.co/music/preview/mixkit-kitchen-melody-581.mp3"></audio>
+    
+    <!-- 新增音效 -->
+    <audio id="splashSound" src="https://assets.mixkit.co/sfx/preview/mixkit-water-splash-1333.mp3"></audio>
+    <audio id="pourSound" src="https://assets.mixkit.co/sfx/preview/mixkit-pouring-sauce-1323.mp3"></audio>
+    <audio id="stirSound" src="https://assets.mixkit.co/sfx/preview/mixkit-stirring-in-a-pot-1326.mp3"></audio>
+    <audio id="steamSound" src="https://assets.mixkit.co/sfx/preview/mixkit-steam-whistle-1105.mp3"></audio>
+    <audio id="bellSound" src="https://assets.mixkit.co/sfx/preview/mixkit-bell-notification-933.mp3"></audio>
+    <audio id="frySound" src="https://assets.mixkit.co/sfx/preview/mixkit-hot-sizzle-1002.mp3"></audio>
+    <audio id="knifeSound" src="https://assets.mixkit.co/sfx/preview/mixkit-cutting-into-vegetables-2476.mp3"></audio>
+    <audio id="marinateSound" src="https://assets.mixkit.co/sfx/preview/mixkit-sprinkle-seasoning-1324.mp3"></audio>
+    <audio id="plateSound" src="https://assets.mixkit.co/sfx/preview/mixkit-plate-clatter-1327.mp3"></audio>
+
+    <script>
+        // 游戏数据 - 八大菜系及其菜肴
+        const cuisines = [
+            {
+                id: 1,
+                name: { zh: "川菜", en: "Sichuan Cuisine" },
+                dish: { zh: "宫保鸡丁", en: "Kung Pao Chicken" },
+                icon: "fas fa-pepper-hot",
+                color: "#e63946",
+                ingredients: [
+                    { name: { zh: "鸡胸肉", en: "Chicken Breast" }, icon: "fas fa-drumstick-bite", collected: false },
+                    { name: { zh: "花生米", en: "Peanuts" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "干辣椒", en: "Dried Chili" }, icon: "fas fa-fire", collected: false },
+                    { name: { zh: "葱姜蒜", en: "Green Onion, Ginger, Garlic" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "酱油", en: "Soy Sauce" }, icon: "fas fa-flask", collected: false },
+                    { name: { zh: "醋", en: "Vinegar" }, icon: "fas fa-tint", collected: false },
+                    { name: { zh: "糖", en: "Sugar" }, icon: "fas fa-cube", collected: false },
+                    { name: { zh: "淀粉", en: "Starch" }, icon: "fas fa-vial", collected: false }
+                ],
+                steps: [
+                    {
+                        title: { zh: "准备食材", en: "Prepare Ingredients" },
+                        description: { zh: "将鸡胸肉切成1.5厘米见方的丁，加入少许盐、料酒和淀粉拌匀腌制10分钟。葱切段，姜蒜切片，干辣椒剪成小段。", en: "Cut chicken breast into 1.5cm cubes, marinate with a little salt, cooking wine and starch for 10 minutes. Cut green onions into sections, slice ginger and garlic, cut dried chili into small pieces." },
+                        icon: "fas fa-utensils",
+                        interaction: { zh: "点击腌制鸡肉", en: "Click to marinate chicken" },
+                        sound: "marinateSound"
+                    },
+                    {
+                        title: { zh: "调制宫保汁", en: "Prepare Kung Pao Sauce" },
+                        description: { zh: "取一小碗，加入2勺酱油、1勺醋、1勺糖、半勺淀粉和3勺清水，搅拌均匀成宫保汁备用。", en: "Take a small bowl, add 2 spoons of soy sauce, 1 spoon of vinegar, 1 spoon of sugar, half spoon of starch and 3 spoons of water, mix well to make Kung Pao sauce." },
+                        icon: "fas fa-flask",
+                        interaction: { zh: "点击调制酱汁", en: "Click to prepare sauce" },
+                        sound: "stirSound"
+                    },
+                    {
+                        title: { zh: "炒制鸡肉", en: "Stir-fry Chicken" },
+                        description: { zh: "热锅凉油，油温六成热时放入鸡丁滑炒至变色，盛出备用。", en: "Heat the pan with oil, when the oil is 60% hot, add chicken cubes and stir-fry until color changes, then set aside." },
+                        icon: "fas fa-fire",
+                        interaction: { zh: "点击翻炒鸡肉", en: "Click to stir-fry chicken" },
+                        sound: "frySound"
+                    },
+                    {
+                        title: { zh: "爆香调料", en: "Sauté Aromatics" },
+                        description: { zh: "锅中留底油，放入干辣椒段、花椒和葱姜蒜爆香，炒出红油和香味。", en: "Leave some oil in the pan, add dried chili, Sichuan pepper, green onion, ginger and garlic, sauté until fragrant and red oil appears." },
+                        icon: "fas fa-pepper-hot",
+                        interaction: { zh: "点击爆香调料", en: "Click to sauté aromatics" },
+                        sound: "sizzleSound"
+                    },
+                    {
+                        title: { zh: "混合翻炒", en: "Combine and Stir-fry" },
+                        description: { zh: "将炒好的鸡丁倒回锅中，快速翻炒均匀，然后倒入调好的宫保汁，大火快速翻炒收汁。", en: "Return chicken to the pan, stir-fry quickly, then add the prepared Kung Pao sauce, stir-fry over high heat to reduce the sauce." },
+                        icon: "fas fa-random",
+                        interaction: { zh: "点击快速翻炒", en: "Click to stir-fry quickly" },
+                        sound: "stirSound"
+                    },
+                    {
+                        title: { zh: "加入花生米", en: "Add Peanuts" },
+                        description: { zh: "最后加入炸好的花生米，快速翻炒几下即可出锅。宫保鸡丁完成！", en: "Finally add fried peanuts, stir-fry a few times and serve. Kung Pao Chicken is ready!" },
+                        icon: "fas fa-plus-circle",
+                        interaction: { zh: "点击加入花生米", en: "Click to add peanuts" },
+                        sound: "plateSound"
+                    }
+                ],
+                result: {
+                    title: { zh: "宫保鸡丁完成！", en: "Kung Pao Chicken Complete!" },
+                    description: { zh: "恭喜你成功制作了经典的川菜宫保鸡丁！这道菜色泽红亮，鸡肉鲜嫩，花生米香脆，口味麻辣酸甜，非常下饭。", en: "Congratulations! You've successfully made classic Sichuan Kung Pao Chicken! This dish has bright red color, tender chicken, crispy peanuts, and a spicy, sweet and sour flavor that goes perfectly with rice." },
+                    image: "https://materials.cdn.bcebos.com/images/27363799/1548089eaca814ca81b188c35d0a2d52.jpeg",
+                    icon: "fas fa-pepper-hot"
+                }
+            },
+            {
+                id: 2,
+                name: { zh: "粤菜", en: "Cantonese Cuisine" },
+                dish: { zh: "清蒸鲈鱼", en: "Steamed Sea Bass" },
+                icon: "fas fa-fish",
+                color: "#1d3557",
+                ingredients: [
+                    { name: { zh: "新鲜鲈鱼", en: "Fresh Sea Bass" }, icon: "fas fa-fish", collected: false },
+                    { name: { zh: "姜", en: "Ginger" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "葱", en: "Green Onion" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "红椒", en: "Red Pepper" }, icon: "fas fa-pepper-hot", collected: false },
+                    { name: { zh: "蒸鱼豉油", en: "Steamed Fish Soy Sauce" }, icon: "fas fa-flask", collected: false },
+                    { name: { zh: "料酒", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
+                    { name: { zh: "盐", en: "Salt" }, icon: "fas fa-mortar-pestle", collected: false },
+                    { name: { zh: "食用油", en: "Cooking Oil" }, icon: "fas fa-oil-can", collected: false }
+                ],
+                steps: [
+                    {
+                        title: { zh: "处理鲈鱼", en: "Prepare the Fish" },
+                        description: { zh: "将鲈鱼去鳞、去内脏，清洗干净。在鱼身两面各划几刀，用料酒和盐均匀涂抹鱼身，腌制10分钟去腥。", en: "Scale and clean the sea bass. Make several cuts on both sides, rub with cooking wine and salt, marinate for 10 minutes to remove fishy smell." },
+                        icon: "fas fa-cut",
+                        interaction: { zh: "点击处理鲈鱼", en: "Click to prepare fish" },
+                        sound: "knifeSound"
+                    },
+                    {
+                        title: { zh: "准备配料", en: "Prepare Ingredients" },
+                        description: { zh: "将姜切成细丝，葱白切段，葱绿切丝，红椒去籽切丝。将葱段垫在鱼盘底部，鱼放在葱段上。", en: "Cut ginger into thin strips, cut white part of green onion into sections, cut green part into strips, remove seeds from red pepper and cut into strips. Place onion sections at the bottom of the plate, put fish on top." },
+                        icon: "fas fa-carrot",
+                        interaction: { zh: "点击切配料", en: "Click to cut ingredients" },
+                        sound: "chopSound"
+                    },
+                    {
+                        title: { zh: "蒸制鲈鱼", en: "Steam the Fish" },
+                        description: { zh: "蒸锅加水烧开，将鱼盘放入蒸锅中，大火蒸8-10分钟（视鱼的大小调整时间）。", en: "Add water to steamer and bring to boil, place fish plate in steamer, steam over high heat for 8-10 minutes (adjust time based on fish size)." },
+                        icon: "fas fa-temperature-high",
+                        interaction: { zh: "点击开始蒸鱼", en: "Click to start steaming" },
+                        sound: "steamSound"
+                    },
+                    {
+                        title: { zh: "蒸鱼完成", en: "Finish Steaming" },
+                        description: { zh: "蒸好后取出鱼盘，倒掉盘中的汤汁（这个汤汁比较腥）。将姜丝、葱丝和红椒丝铺在鱼身上。", en: "Take out fish plate after steaming, pour out the liquid (which is fishy). Place ginger strips, green onion strips and red pepper strips on the fish." },
+                        icon: "fas fa-tint-slash",
+                        interaction: { zh: "点击倒掉汤汁", en: "Click to pour out liquid" },
+                        sound: "splashSound"
+                    },
+                    {
+                        title: { zh: "淋热油", en: "Pour Hot Oil" },
+                        description: { zh: "锅中烧热2勺食用油，烧至微微冒烟，将热油均匀淋在葱姜丝和鱼身上，激发出香味。", en: "Heat 2 spoons of cooking oil in a pan until slightly smoking, evenly pour hot oil over green onion, ginger strips and fish to release aroma." },
+                        icon: "fas fa-oil-can",
+                        interaction: { zh: "点击淋热油", en: "Click to pour hot oil" },
+                        sound: "pourSound"
+                    },
+                    {
+                        title: { zh: "淋蒸鱼豉油", en: "Add Soy Sauce" },
+                        description: { zh: "最后沿着盘边淋入适量的蒸鱼豉油。清蒸鲈鱼完成！", en: "Finally pour steamed fish soy sauce along the edge of the plate. Steamed Sea Bass is ready!" },
+                        icon: "fas fa-flask",
+                        interaction: { zh: "点击淋豉油", en: "Click to add soy sauce" },
+                        sound: "pourSound"
+                    }
+                ],
+                result: {
+                    title: { zh: "清蒸鲈鱼完成！", en: "Steamed Sea Bass Complete!" },
+                    description: { zh: "恭喜你成功制作了经典的粤菜清蒸鲈鱼！这道菜鱼肉鲜嫩，原汁原味，清淡可口，体现了粤菜追求食材本味的精髓。", en: "Congratulations! You've successfully made classic Cantonese Steamed Sea Bass! This dish features tender fish with original flavor, light and delicious, reflecting Cantonese cuisine's pursuit of natural ingredient flavors." },
+                    image: "https://n.sinaimg.cn/sinakd20210924ac/400/w1200h800/20210924/1490-d2a9911976a4a5c2892e04d69df720a7.jpg",
+                    icon: "fas fa-fish"
+                }
+            },
+            {
+                id: 3,
+                name: { zh: "湘菜", en: "Hunan Cuisine" },
+                dish: { zh: "辣椒炒肉", en: "Stir-fried Pork with Chili" },
+                icon: "fas fa-pepper-hot",
+                color: "#d90429",
+                ingredients: [
+                    { name: { zh: "五花肉", en: "Pork Belly" }, icon: "fas fa-bacon", collected: false },
+                    { name: { zh: "青椒", en: "Green Pepper" }, icon: "fas fa-pepper-hot", collected: false },
+                    { name: { zh: "红椒", en: "Red Pepper" }, icon: "fas fa-pepper-hot", collected: false },
+                    { name: { zh: "大蒜", en: "Garlic" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "豆豉", en: "Fermented Black Beans" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "酱油", en: "Soy Sauce" }, icon: "fas fa-flask", collected: false },
+                    { name: { zh: "料酒", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
+                    { name: { zh: "盐", en: "Salt" }, icon: "fas fa-mortar-pestle", collected: false }
+                ],
+                steps: [
+                    {
+                        title: { zh: "准备食材", en: "Prepare Ingredients" },
+                        description: { zh: "将五花肉切成薄片，青红椒去籽切块，大蒜切片。五花肉用少许酱油和料酒腌制10分钟。", en: "Slice pork belly thinly, remove seeds from green and red peppers and cut into pieces, slice garlic. Marinate pork belly with a little soy sauce and cooking wine for 10 minutes." },
+                        icon: "fas fa-utensils",
+                        interaction: { zh: "点击切配食材", en: "Click to prepare ingredients" },
+                        sound: "chopSound"
+                    },
+                    {
+                        title: { zh: "煸炒五花肉", en: "Stir-fry Pork Belly" },
+                        description: { zh: "热锅少油，放入五花肉片，中火煸炒至出油，肉片微卷，表面金黄。", en: "Heat pan with a little oil, add pork belly slices, stir-fry over medium heat until oil comes out, slices curl slightly and turn golden." },
+                        icon: "fas fa-fire",
+                        interaction: { zh: "点击煸炒肉片", en: "Click to stir-fry pork" },
+                        sound: "frySound"
+                    },
+                    {
+                        title: { zh: "爆香调料", en: "Sauté Aromatics" },
+                        description: { zh: "将肉片拨到一边，放入蒜片和豆豉爆香，炒出香味。", en: "Push pork to one side, add garlic slices and fermented black beans, sauté until fragrant." },
+                        icon: "fas fa-leaf",
+                        interaction: { zh: "点击爆香蒜片", en: "Click to sauté garlic" },
+                        sound: "sizzleSound"
+                    },
+                    {
+                        title: { zh: "加入辣椒", en: "Add Peppers" },
+                        description: { zh: "放入青红椒块，与肉片一起翻炒，炒至辣椒断生，表面起虎皮。", en: "Add green and red pepper pieces, stir-fry with pork until peppers are cooked but still crisp, with slight blistering on surface." },
+                        icon: "fas fa-random",
+                        interaction: { zh: "点击翻炒辣椒", en: "Click to stir-fry peppers" },
+                        sound: "stirSound"
+                    },
+                    {
+                        title: { zh: "调味出锅", en: "Season and Serve" },
+                        description: { zh: "加入适量酱油、盐调味，快速翻炒均匀即可出锅。辣椒炒肉完成！", en: "Add appropriate amount of soy sauce and salt, stir-fry quickly and evenly, then serve. Stir-fried Pork with Chili is ready!" },
+                        icon: "fas fa-mortar-pestle",
+                        interaction: { zh: "点击调味出锅", en: "Click to season and serve" },
+                        sound: "plateSound"
+                    }
+                ],
+                result: {
+                    title: { zh: "辣椒炒肉完成！", en: "Stir-fried Pork with Chili Complete!" },
+                    description: { zh: "恭喜你成功制作了经典的湘菜辣椒炒肉！这道菜香辣可口，肥而不腻，是湖南家常菜的代表作，非常下饭。", en: "Congratulations! You've successfully made classic Hunan Stir-fried Pork with Chili! This dish is spicy and delicious, fatty but not greasy, a representative Hunan home-style dish that goes perfectly with rice." },
+                    image: "https://th.bing.com/th/id/R.14bcaba68dbef2b7e6ae84f781b71948?rik=RWF40exlOXodcA&riu=http%3a%2f%2fn.sinaimg.cn%2ftranslate%2f20171107%2f_zqr-fynmzrs7765920.jpg&ehk=vl%2bdeGrpLyXc7Eyc7ZDj9xQZ%2fm7JPIBWxzZIPiJWVOE%3d&risl=&pid=ImgRaw&r=0",
+                    icon: "fas fa-pepper-hot"
+                }
+            },
+            {
+                id: 4,
+                name: { zh: "鲁菜", en: "Shandong Cuisine" },
+                dish: { zh: "葱烧海参", en: "Braised Sea Cucumber with Scallions" },
+                icon: "fas fa-water",
+                color: "#006d77",
+                ingredients: [
+                    { name: { zh: "海参", en: "Sea Cucumber" }, icon: "fas fa-water", collected: false },
+                    { name: { zh: "大葱", en: "Scallions" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "生姜", en: "Ginger" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "高汤", en: "Broth" }, icon: "fas fa-flask", collected: false },
+                    { name: { zh: "酱油", en: "Soy Sauce" }, icon: "fas fa-flask", collected: false },
+                    { name: { zh: "料酒", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
+                    { name: { zh: "糖", en: "Sugar" }, icon: "fas fa-cube", collected: false },
+                    { name: { zh: "淀粉", en: "Starch" }, icon: "fas fa-vial", collected: false }
+                ],
+                steps: [
+                    {
+                        title: { zh: "准备海参", en: "Prepare Sea Cucumber" },
+                        description: { zh: "将泡发好的海参清洗干净，切成条状。大葱切段，生姜切片。", en: "Clean soaked sea cucumber, cut into strips. Cut scallions into sections, slice ginger." },
+                        icon: "fas fa-cut",
+                        interaction: { zh: "点击处理海参", en: "Click to prepare sea cucumber" },
+                        sound: "knifeSound"
+                    },
+                    {
+                        title: { zh: "煸炒大葱", en: "Stir-fry Scallions" },
+                        description: { zh: "锅中放油，放入大葱段，小火慢慢煸炒至金黄色，捞出葱段备用，留葱油在锅中。", en: "Add oil to pan, add scallion sections, stir-fry over low heat until golden brown, remove scallions and set aside, leave scallion oil in pan." },
+                        icon: "fas fa-fire",
+                        interaction: { zh: "点击煸炒大葱", en: "Click to stir-fry scallions" },
+                        sound: "sizzleSound"
+                    },
+                    {
+                        title: { zh: "烧制海参", en: "Braise Sea Cucumber" },
+                        description: { zh: "在葱油中加入姜片爆香，放入海参条，加入料酒、酱油、糖和高汤，烧开后转小火慢烧10分钟。", en: "Add ginger slices to scallion oil and sauté until fragrant, add sea cucumber strips, add cooking wine, soy sauce, sugar and broth, bring to boil then reduce heat and simmer for 10 minutes." },
+                        icon: "fas fa-temperature-high",
+                        interaction: { zh: "点击烧制海参", en: "Click to braise sea cucumber" },
+                        sound: "stirSound"
+                    },
+                    {
+                        title: { zh: "加入大葱", en: "Add Scallions" },
+                        description: { zh: "将之前煸炒好的大葱段放入锅中，与海参一起再烧5分钟，让葱香味充分融入。", en: "Add previously stir-fried scallion sections to the pan, cook with sea cucumber for another 5 minutes to fully integrate scallion flavor." },
+                        icon: "fas fa-plus-circle",
+                        interaction: { zh: "点击加入大葱", en: "Click to add scallions" },
+                        sound: "pourSound"
+                    },
+                    {
+                        title: { zh: "勾芡出锅", en: "Thicken Sauce and Serve" },
+                        description: { zh: "用淀粉水勾芡，使汤汁浓稠，包裹在海参和大葱上。葱烧海参完成！", en: "Thicken sauce with starch water until thick and coating sea cucumber and scallions. Braised Sea Cucumber with Scallions is ready!" },
+                        icon: "fas fa-vial",
+                        interaction: { zh: "点击勾芡出锅", en: "Click to thicken sauce and serve" },
+                        sound: "plateSound"
+                    }
+                ],
+                result: {
+                    title: { zh: "葱烧海参完成！", en: "Braised Sea Cucumber with Scallions Complete!" },
+                    description: { zh: "恭喜你成功制作了经典的鲁菜葱烧海参！这道菜海参软糯，葱香浓郁，汤汁醇厚，是山东地区的传统名菜。", en: "Congratulations! You've successfully made classic Shandong Braised Sea Cucumber with Scallions! This dish features soft sea cucumber, rich scallion flavor, and thick delicious sauce, a traditional famous dish from Shandong region." },
+                    image: "https://th.bing.com/th/id/R.8e98925619c3d63c408ed0673a6ec937?rik=3IJfexlZAXqA7g&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20180201%2f99604beac57744ec84576c615c6bd4fd.jpeg&ehk=%2foSoZUNMohXnCkFJ8vvypNl9qLnOJaUPVlSpYuffC2Q%3d&risl=&pid=ImgRaw&r=0",
+                    icon: "fas fa-water"
+                }
+            },
+            {
+                id: 5,
+                name: { zh: "苏菜", en: "Jiangsu Cuisine" },
+                dish: { zh: "松鼠桂鱼", en: "Squirrel-shaped Mandarin Fish" },
+                icon: "fas fa-fish",
+                color: "#9d4edd",
+                ingredients: [
+                    { name: { zh: "桂鱼", en: "Mandarin Fish" }, icon: "fas fa-fish", collected: false },
+                    { name: { zh: "松子", en: "Pine Nuts" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "青豆", en: "Green Peas" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "番茄酱", en: "Ketchup" }, icon: "fas fa-flask", collected: false },
+                    { name: { zh: "糖", en: "Sugar" }, icon: "fas fa-cube", collected: false },
+                    { name: { zh: "醋", en: "Vinegar" }, icon: "fas fa-tint", collected: false },
+                    { name: { zh: "淀粉", en: "Starch" }, icon: "fas fa-vial", collected: false },
+                    { name: { zh: "鸡蛋", en: "Egg" }, icon: "fas fa-egg", collected: false }
+                ],
+                steps: [
+                    {
+                        title: { zh: "处理桂鱼", en: "Prepare the Fish" },
+                        description: { zh: "将桂鱼去鳞、去内脏，洗净后切下鱼头。从鱼背处将鱼剖成两半，去掉鱼骨，鱼肉切花刀。", en: "Scale and clean mandarin fish, cut off head. Split fish from back into two halves, remove bone, make crosshatch cuts on fish meat." },
+                        icon: "fas fa-cut",
+                        interaction: { zh: "点击处理桂鱼", en: "Click to prepare fish" },
+                        sound: "knifeSound"
+                    },
+                    {
+                        title: { zh: "腌制鱼肉", en: "Marinate Fish" },
+                        description: { zh: "用料酒、盐和姜片腌制鱼肉10分钟，然后裹上淀粉和蛋液。", en: "Marinate fish with cooking wine, salt and ginger slices for 10 minutes, then coat with starch and egg mixture." },
+                        icon: "fas fa-egg",
+                        interaction: { zh: "点击腌制鱼肉", en: "Click to marinate fish" },
+                        sound: "marinateSound"
+                    },
+                    {
+                        title: { zh: "炸制鱼肉", en: "Deep-fry Fish" },
+                        description: { zh: "油温六成热时，将鱼肉下锅炸至定型，捞出。油温升高后复炸至金黄酥脆，鱼头也炸至金黄。", en: "When oil is 60% hot, deep-fry fish until set, remove. When oil temperature rises, fry again until golden and crispy, also fry fish head until golden." },
+                        icon: "fas fa-fire",
+                        interaction: { zh: "点击炸制鱼肉", en: "Click to deep-fry fish" },
+                        sound: "frySound"
+                    },
+                    {
+                        title: { zh: "调制酱汁", en: "Prepare Sauce" },
+                        description: { zh: "锅中留少许油，加入番茄酱、糖、醋、盐和适量水，烧开后用淀粉水勾芡。", en: "Leave a little oil in pan, add ketchup, sugar, vinegar, salt and appropriate amount of water, bring to boil then thicken with starch water." },
+                        icon: "fas fa-flask",
+                        interaction: { zh: "点击调制酱汁", en: "Click to prepare sauce" },
+                        sound: "stirSound"
+                    },
+                    {
+                        title: { zh: "摆盘浇汁", en: "Plate and Pour Sauce" },
+                        description: { zh: "将炸好的鱼肉和鱼头摆成松鼠形状，淋上酱汁，撒上松子和青豆。松鼠桂鱼完成！", en: "Arrange fried fish and head into squirrel shape, pour sauce over, sprinkle with pine nuts and green peas. Squirrel-shaped Mandarin Fish is ready!" },
+                        icon: "fas fa-utensil-spoon",
+                        interaction: { zh: "点击摆盘浇汁", en: "Click to plate and pour sauce" },
+                        sound: "pourSound"
+                    }
+                ],
+                result: {
+                    title: { zh: "松鼠桂鱼完成！", en: "Squirrel-shaped Mandarin Fish Complete!" },
+                    description: { zh: "恭喜你成功制作了经典的苏菜松鼠桂鱼！这道菜形似松鼠，外酥里嫩，酸甜可口，是江苏地区的传统名菜，常用于宴席。", en: "Congratulations! You've successfully made classic Jiangsu Squirrel-shaped Mandarin Fish! This dish resembles a squirrel, crispy outside and tender inside, sweet and sour flavor, a traditional famous dish from Jiangsu region often served at banquets." },
+                    image: "https://i01piccdn.sogoucdn.com/ce0d1df54f6005e3",
+                    icon: "fas fa-fish"
+                }
+            },
+            {
+                id: 6,
+                name: { zh: "浙菜", en: "Zhejiang Cuisine" },
+                dish: { zh: "龙井虾仁", en: "Longjing Shrimp" },
+                icon: "fas fa-leaf",
+                color: "#2a9d8f",
+                ingredients: [
+                    { name: { zh: "虾仁", en: "Shrimp" }, icon: "fas fa-shrimp", collected: false },
+                    { name: { zh: "龙井茶叶", en: "Longjing Tea Leaves" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "蛋清", en: "Egg White" }, icon: "fas fa-egg", collected: false },
+                    { name: { zh: "淀粉", en: "Starch" }, icon: "fas fa-vial", collected: false },
+                    { name: { zh: "料酒", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
+                    { name: { zh: "盐", en: "Salt" }, icon: "fas fa-mortar-pestle", collected: false },
+                    { name: { zh: "食用油", en: "Cooking Oil" }, icon: "fas fa-oil-can", collected: false }
+                ],
+                steps: [
+                    {
+                        title: { zh: "准备虾仁", en: "Prepare Shrimp" },
+                        description: { zh: "虾仁去虾线，洗净后用厨房纸吸干水分。用蛋清、淀粉、料酒和盐腌制15分钟。", en: "Remove veins from shrimp, wash and pat dry with paper towel. Marinate with egg white, starch, cooking wine and salt for 15 minutes." },
+                        icon: "fas fa-cut",
+                        interaction: { zh: "点击处理虾仁", en: "Click to prepare shrimp" },
+                        sound: "knifeSound"
+                    },
+                    {
+                        title: { zh: "泡龙井茶", en: "Brew Longjing Tea" },
+                        description: { zh: "取适量龙井茶叶，用80℃热水冲泡，取茶汤和部分茶叶备用。", en: "Take appropriate amount of Longjing tea leaves, brew with 80℃ hot water, take tea liquid and some tea leaves for later use." },
+                        icon: "fas fa-mug-hot",
+                        interaction: { zh: "点击泡龙井茶", en: "Click to brew tea" },
+                        sound: "pourSound"
+                    },
+                    {
+                        title: { zh: "滑炒虾仁", en: "Stir-fry Shrimp" },
+                        description: { zh: "热锅凉油，油温四成热时放入虾仁滑炒至变色，盛出备用。", en: "Heat pan with oil, when oil is 40% hot, add shrimp and stir-fry until color changes, remove and set aside." },
+                        icon: "fas fa-fire",
+                        interaction: { zh: "点击滑炒虾仁", en: "Click to stir-fry shrimp" },
+                        sound: "sizzleSound"
+                    },
+                    {
+                        title: { zh: "加入茶汤", en: "Add Tea Liquid" },
+                        description: { zh: "锅中留少许油，放入龙井茶叶炒香，然后倒入茶汤烧开。", en: "Leave a little oil in pan, add Longjing tea leaves and stir-fry until fragrant, then pour in tea liquid and bring to boil." },
+                        icon: "fas fa-plus-circle",
+                        interaction: { zh: "点击加入茶汤", en: "Click to add tea liquid" },
+                        sound: "pourSound"
+                    },
+                    {
+                        title: { zh: "混合翻炒", en: "Combine and Stir-fry" },
+                        description: { zh: "将炒好的虾仁放入锅中，快速翻炒均匀，让虾仁吸收茶香。龙井虾仁完成！", en: "Add stir-fried shrimp to pan, quickly stir-fry evenly to let shrimp absorb tea aroma. Longjing Shrimp is ready!" },
+                        icon: "fas fa-random",
+                        interaction: { zh: "点击混合翻炒", en: "Click to combine and stir-fry" },
+                        sound: "stirSound"
+                    }
+                ],
+                result: {
+                    title: { zh: "龙井虾仁完成！", en: "Longjing Shrimp Complete!" },
+                    description: { zh: "恭喜你成功制作了经典的浙菜龙井虾仁！这道菜虾仁鲜嫩，茶香清新，色泽淡雅，体现了浙菜清鲜爽嫩的特色。", en: "Congratulations! You've successfully made classic Zhejiang Longjing Shrimp! This dish features tender shrimp, fresh tea aroma, elegant color, reflecting Zhejiang cuisine's characteristics of freshness and tenderness." },
+                    image: "https://th.bing.com/th/id/R.651715b0f218d823dab10019985c0eaf?rik=pFqKiHUFOz8fmw&riu=http%3a%2f%2fphotocdn.sohu.com%2f20160101%2fmp51732372_1451590226336_1_th.jpeg&ehk=81E6D7ykHMyRfbSs%2bSGX5sDeSDnNtn9aWmfgcoMsAu4%3d&risl=&pid=ImgRaw&r=0",
+                    icon: "fas fa-shrimp"
+                }
+            },
+            {
+                id: 7,
+                name: { zh: "闽菜", en: "Fujian Cuisine" },
+                dish: { zh: "鸡汤汆海蚌", en: "Sea Clam in Chicken Soup" },
+                icon: "fas fa-water",
+                color: "#0077b6",
+                ingredients: [
+                    { name: { zh: "海蚌", en: "Sea Clams" }, icon: "fas fa-water", collected: false },
+                    { name: { zh: "鸡肉", en: "Chicken" }, icon: "fas fa-drumstick-bite", collected: false },
+                    { name: { zh: "火腿", en: "Ham" }, icon: "fas fa-bacon", collected: false },
+                    { name: { zh: "香菇", en: "Mushrooms" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "姜", en: "Ginger" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "料酒", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
+                    { name: { zh: "盐", en: "Salt" }, icon: "fas fa-mortar-pestle", collected: false }
+                ],
+                steps: [
+                    {
+                        title: { zh: "准备食材", en: "Prepare Ingredients" },
+                        description: { zh: "海蚌洗净，鸡肉切块，火腿切片，香菇泡发，姜切片。", en: "Clean sea clams, cut chicken into pieces, slice ham, soak mushrooms, slice ginger." },
+                        icon: "fas fa-utensils",
+                        interaction: { zh: "点击准备食材", en: "Click to prepare ingredients" },
+                        sound: "chopSound"
+                    },
+                    {
+                        title: { zh: "炖煮鸡汤", en: "Simmer Chicken Soup" },
+                        description: { zh: "将鸡肉、火腿、香菇和姜片放入锅中，加足量水，大火烧开后转小火炖煮1小时，制成清鸡汤。", en: "Put chicken, ham, mushrooms and ginger slices in pot, add enough water, bring to boil then reduce heat and simmer for 1 hour to make clear chicken soup." },
+                        icon: "fas fa-temperature-high",
+                        interaction: { zh: "点击炖煮鸡汤", en: "Click to simmer chicken soup" },
+                        sound: "steamSound"
+                    },
+                    {
+                        title: { zh: "汆烫海蚌", en: "Blanch Sea Clams" },
+                        description: { zh: "另起一锅水烧开，放入海蚌汆烫至开口，立即捞出，去除一半蚌壳。", en: "Boil another pot of water, add sea clams and blanch until shells open, remove immediately, remove half of each shell." },
+                        icon: "fas fa-tint",
+                        interaction: { zh: "点击汆烫海蚌", en: "Click to blanch sea clams" },
+                        sound: "splashSound"
+                    },
+                    {
+                        title: { zh: "组合菜品", en: "Combine Dish" },
+                        description: { zh: "将处理好的海蚌放入汤碗中，滤出清鸡汤，去掉鸡肉等固体，将热鸡汤淋在海蚌上。", en: "Place prepared sea clams in soup bowl, strain clear chicken soup, remove solid ingredients like chicken, pour hot chicken soup over sea clams." },
+                        icon: "fas fa-random",
+                        interaction: { zh: "点击组合菜品", en: "Click to combine dish" },
+                        sound: "pourSound"
+                    },
+                    {
+                        title: { zh: "调味完成", en: "Season and Complete" },
+                        description: { zh: "根据口味加入适量盐调味，撒上少许葱花。鸡汤汆海蚌完成！", en: "Add appropriate amount of salt to taste, sprinkle with chopped green onion. Sea Clam in Chicken Soup is ready!" },
+                        icon: "fas fa-mortar-pestle",
+                        interaction: { zh: "点击调味完成", en: "Click to season and complete" },
+                        sound: "bellSound"
+                    }
+                ],
+                result: {
+                    title: { zh: "鸡汤汆海蚌完成！", en: "Sea Clam in Chicken Soup Complete!" },
+                    description: { zh: "恭喜你成功制作了经典的闽菜鸡汤汆海蚌！这道菜汤清味鲜，海蚌脆嫩，鸡肉和火腿的鲜味充分融合，体现了闽菜注重汤菜的特色。", en: "Congratulations! You've successfully made classic Fujian Sea Clam in Chicken Soup! This dish features clear, flavorful soup, crisp and tender sea clams, fully integrated umami from chicken and ham, reflecting Fujian cuisine's emphasis on soup dishes." },
+                    image: "https://th.bing.com/th/id/R.fc73bdc71c9f828d34b4ac1b71359d28?rik=wSX7%2fYrahKmxRg&riu=http%3a%2f%2fi2.kknews.cc%2fVEtPLCGBRv_LVaPIdZLLZrw5OpCeza8kHcaUB17KtPk%2f0.jpg&ehk=6SuYYnHvJI7dI0YOEAhCR6hrY0QqhsHIVcDRQ7lN01s%3d&risl=&pid=ImgRaw&r=0",
+                    icon: "fas fa-water"
+                }
+            },
+            {
+                id: 8,
+                name: { zh: "徽菜", en: "Anhui Cuisine" },
+                dish: { zh: "刀板香", en: "Dao Ban Xiang (Salted Pork)" },
+                icon: "fas fa-bacon",
+                color: "#bc6c25",
+                ingredients: [
+                    { name: { zh: "咸肉", en: "Salted Pork" }, icon: "fas fa-bacon", collected: false },
+                    { name: { zh: "竹笋", en: "Bamboo Shoots" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "百叶结", en: "Tofu Knots" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "姜", en: "Ginger" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "料酒", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
+                    { name: { zh: "葱", en: "Green Onion" }, icon: "fas fa-leaf", collected: false }
+                ],
+                steps: [
+                    {
+                        title: { zh: "准备食材", en: "Prepare Ingredients" },
+                        description: { zh: "咸肉切片，竹笋切块，百叶结洗净，姜切片，葱切段。", en: "Slice salted pork, cut bamboo shoots into pieces, wash tofu knots, slice ginger, cut green onion into sections." },
+                        icon: "fas fa-utensils",
+                        interaction: { zh: "点击准备食材", en: "Click to prepare ingredients" },
+                        sound: "chopSound"
+                    },
+                    {
+                        title: { zh: "汆烫咸肉", en: "Blanch Salted Pork" },
+                        description: { zh: "将咸肉片放入沸水中汆烫2分钟，去除部分咸味和油脂，捞出备用。", en: "Put salted pork slices in boiling water and blanch for 2 minutes to remove some saltiness and fat, remove and set aside." },
+                        icon: "fas fa-tint",
+                        interaction: { zh: "点击汆烫咸肉", en: "Click to blanch salted pork" },
+                        sound: "splashSound"
+                    },
+                    {
+                        title: { zh: "炖煮食材", en: "Simmer Ingredients" },
+                        description: { zh: "锅中加入适量水，放入咸肉片、竹笋、百叶结、姜片和葱段，大火烧开后转小火炖煮30分钟。", en: "Add appropriate amount of water to pot, add salted pork slices, bamboo shoots, tofu knots, ginger slices and green onion sections, bring to boil then reduce heat and simmer for 30 minutes." },
+                        icon: "fas fa-temperature-high",
+                        interaction: { zh: "点击炖煮食材", en: "Click to simmer ingredients" },
+                        sound: "steamSound"
+                    },
+                    {
+                        title: { zh: "摆盘上桌", en: "Plate and Serve" },
+                        description: { zh: "将炖煮好的食材捞出，在传统的木制刀板上摆好。刀板香完成！", en: "Remove simmered ingredients, arrange on traditional wooden cutting board. Dao Ban Xiang is ready!" },
+                        icon: "fas fa-utensil-spoon",
+                        interaction: { zh: "点击摆盘上桌", en: "Click to plate and serve" },
+                        sound: "plateSound"
+                    }
+                ],
+                result: {
+                    title: { zh: "刀板香完成！", en: "Dao Ban Xiang Complete!" },
+                    description: { zh: "恭喜你成功制作了经典的徽菜刀板香！这道菜咸香适口，竹笋清脆，百叶结吸收了肉汁的鲜美，是安徽地区的传统农家菜。", en: "Congratulations! You've successfully made classic Anhui Dao Ban Xiang! This dish is savory and tasty, bamboo shoots are crisp, tofu knots absorb delicious meat juices, a traditional farmhouse dish from Anhui region." },
+                    image: "https://picb.zhimg.com/v2-e7887669cf01fefe85c3cebe235cae8a_r.jpg",
+                    icon: "fas fa-bacon"
+                }
+            }
+        ];
+
+        // 游戏状态
+        let gameState = {
+            selectedCuisine: null,
+            currentStep: 0,
+            isCooking: false,
+            audioEnabled: true,
+            ingredientsCollected: 0,
+            language: "zh" // 默认中文
+        };
+
+        // DOM元素
+        const cuisineGrid = document.getElementById('cuisineGrid');
+        const startSection = document.getElementById('startSection');
+        const startCookingBtn = document.getElementById('startCookingBtn');
+        const ingredientsContainer = document.getElementById('ingredientsContainer');
+        const stepsContainer = document.getElementById('stepsContainer');
+        const stepControls = document.getElementById('stepControls');
+        const prevStepBtn = document.getElementById('prevStepBtn');
+        const nextStepBtn = document.getElementById('nextStepBtn');
+        const resultPanel = document.getElementById('resultPanel');
+        const resultContainer = document.getElementById('resultContainer');
+        const restartBtn = document.getElementById('restartBtn');
+        const tryAnotherBtn = document.getElementById('tryAnotherBtn');
+        const audioControl = document.getElementById('audioControl');
+        const langCnBtn = document.getElementById('langCn');
+        const langEnBtn = document.getElementById('langEn');
+
+        // 音频元素
+        const clickSound = document.getElementById('clickSound');
+        const sizzleSound = document.getElementById('sizzleSound');
+        const chopSound = document.getElementById('chopSound');
+        const successSound = document.getElementById('successSound');
+        const bgMusic = document.getElementById('bgMusic');
+        const splashSound = document.getElementById('splashSound');
+        const pourSound = document.getElementById('pourSound');
+        const stirSound = document.getElementById('stirSound');
+        const steamSound = document.getElementById('steamSound');
+        const bellSound = document.getElementById('bellSound');
+        const frySound = document.getElementById('frySound');
+        const knifeSound = document.getElementById('knifeSound');
+        const marinateSound = document.getElementById('marinateSound');
+        const plateSound = document.getElementById('plateSound');
+
+        // 初始化菜系选择
+        function initCuisineSelection() {
+            cuisineGrid.innerHTML = '';
+            
+            cuisines.forEach(cuisine => {
+                const card = document.createElement('div');
+                card.className = 'cuisine-card';
+                card.dataset.id = cuisine.id;
+                
+                card.innerHTML = `
+                    <div class="cuisine-icon">
+                        <i class="${cuisine.icon}"></i>
+                    </div>
+                    <div class="cuisine-name">${getText(cuisine.name)}</div>
+                    <div class="cuisine-dish">${getText(cuisine.dish)}</div>
+                `;
+                
+                card.addEventListener('click', () => selectCuisine(cuisine.id));
+                cuisineGrid.appendChild(card);
+            });
+        }
+
+        // 根据当前语言获取文本
+        function getText(textObj) {
+            return textObj[gameState.language] || textObj.zh;
+        }
+
+        // 切换语言
+        function switchLanguage(lang) {
+            gameState.language = lang;
+            
+            // 更新语言按钮状态
+            langCnBtn.classList.toggle('active', lang === 'zh');
+            langEnBtn.classList.toggle('active', lang === 'en');
+            
+            // 更新所有带有data-lang属性的元素
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const langKey = element.getAttribute('data-lang');
+                element.style.display = langKey === lang ? 'inline' : 'none';
+            });
+            
+            // 重新渲染菜系卡片
+            initCuisineSelection();
+            
+            // 如果已经选择了菜系，更新显示
+            if (gameState.selectedCuisine) {
+                if (gameState.isCooking) {
+                    displayStep();
+                } else {
+                    displayIngredients();
+                }
+            }
+        }
+
+        // 选择菜系
+        function selectCuisine(cuisineId) {
+            // 播放点击音效
+            playSound(clickSound);
+            
+            // 移除之前选中的卡片
+            document.querySelectorAll('.cuisine-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // 标记选中的卡片
+            const selectedCard = document.querySelector(`.cuisine-card[data-id="${cuisineId}"]`);
+            selectedCard.classList.add('selected');
+            
+            // 更新游戏状态
+            gameState.selectedCuisine = cuisines.find(c => c.id === cuisineId);
+            gameState.currentStep = 0;
+            gameState.isCooking = false;
+            gameState.ingredientsCollected = 0;
+            
+            // 显示开始按钮
+            startSection.style.display = 'flex';
+            
+            // 显示食材
+            displayIngredients();
+        }
+
+        // 显示食材
+        function displayIngredients() {
+            const cuisine = gameState.selectedCuisine;
+            ingredientsContainer.innerHTML = `
+                <h3 style="text-align: center; margin-bottom: 20px; color: #ff5e62;">${getText(cuisine.dish)} <span data-lang="zh">所需食材</span><span data-lang="en" style="display:none;">Required Ingredients</span></h3>
+                <div class="ingredients-grid" id="ingredientsList"></div>
+            `;
+            
+            const ingredientsList = document.getElementById('ingredientsList');
+            cuisine.ingredients.forEach((ingredient, index) => {
+                const item = document.createElement('div');
+                item.className = 'ingredient-item';
+                item.dataset.index = index;
+                
+                item.innerHTML = `
+                    <div class="ingredient-icon">
+                        <i class="${ingredient.icon}"></i>
+                    </div>
+                    <div>${getText(ingredient.name)}</div>
+                `;
+                
+                ingredientsList.appendChild(item);
+            });
+        }
+
+        // 开始烹饪
+        function startCooking() {
+            playSound(bellSound);
+            
+            gameState.isCooking = true;
+            gameState.currentStep = 0;
+            
+            // 隐藏开始按钮
+            startSection.style.display = 'none';
+            
+            // 显示步骤控制
+            stepControls.style.display = 'flex';
+            
+            // 显示第一步
+            displayStep();
+        }
+
+        // 显示当前步骤
+        function displayStep() {
+            const cuisine = gameState.selectedCuisine;
+            const step = cuisine.steps[gameState.currentStep];
+            
+            stepsContainer.innerHTML = `
+                <div class="step-container active">
+                    <div class="step-title">
+                        <span>${getText(step.title)}</span>
+                        <span class="step-counter"><span data-lang="zh">步骤</span><span data-lang="en" style="display:none;">Step</span> ${gameState.currentStep + 1}/${cuisine.steps.length}</span>
+                    </div>
+                    <div class="step-image">
+                        <div class="step-image-placeholder">
+                            <div class="step-image-icon">
+                                <i class="${step.icon}"></i>
+                            </div>
+                            <div class="step-image-text">${getText(step.title)}</div>
+                        </div>
+                    </div>
+                    <div class="step-description">${getText(step.description)}</div>
+                    <div class="step-interaction">
+                        <button class="action-btn" id="stepActionBtn">
+                            <i class="fas fa-utensil-spoon"></i> ${getText(step.interaction)}
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // 添加步骤交互事件
+            const stepActionBtn = document.getElementById('stepActionBtn');
+            stepActionBtn.addEventListener('click', () => {
+                // 播放步骤对应的音效
+                if (step.sound) {
+                    const soundElement = document.getElementById(step.sound);
+                    if (soundElement) {
+                        playSound(soundElement);
+                    } else {
+                        playSound(clickSound);
+                    }
+                } else {
+                    playSound(clickSound);
+                }
+                
+                // 收集食材（如果是第一步）
+                if (gameState.currentStep === 0) {
+                    collectIngredient();
+                }
+                
+                // 更新按钮状态
+                stepActionBtn.disabled = true;
+                stepActionBtn.innerHTML = `<i class="fas fa-check"></i> <span data-lang="zh">已完成</span><span data-lang="en" style="display:none;">Completed</span>`;
+                
+                // 自动下一步（如果是最后一步则显示结果）
+                setTimeout(() => {
+                    if (gameState.currentStep === cuisine.steps.length - 1) {
+                        showResult();
+                    } else {
+                        nextStep();
+                    }
+                }, 1000);
+            });
+            
+            // 更新控制按钮状态
+            updateControlButtons();
+        }
+
+        // 收集食材
+        function collectIngredient() {
+            const ingredientsList = document.querySelector('.ingredients-grid');
+            if (!ingredientsList) return;
+            
+            // 每次收集一个食材
+            const items = ingredientsList.querySelectorAll('.ingredient-item');
+            if (gameState.ingredientsCollected < items.length) {
+                items[gameState.ingredientsCollected].classList.add('collected');
+                gameState.ingredientsCollected++;
+                
+                // 播放收集音效
+                playSound(bellSound);
+            }
+        }
+
+        // 下一步
+        function nextStep() {
+            playSound(clickSound);
+            if (gameState.currentStep < gameState.selectedCuisine.steps.length - 1) {
+                gameState.currentStep++;
+                displayStep();
+            }
+        }
+
+        // 上一步
+        function prevStep() {
+            playSound(clickSound);
+            if (gameState.currentStep > 0) {
+                gameState.currentStep--;
+                displayStep();
+            }
+        }
+
+        // 更新控制按钮状态
+        function updateControlButtons() {
+            prevStepBtn.disabled = gameState.currentStep === 0;
+            nextStepBtn.disabled = gameState.currentStep === gameState.selectedCuisine.steps.length - 1;
+        }
+
+        // 显示结果
+        function showResult() {
+            playSound(successSound);
+            
+            const cuisine = gameState.selectedCuisine;
+            
+            // 隐藏步骤控制
+            stepControls.style.display = 'none';
+            
+            // 显示结果面板
+            resultPanel.style.display = 'block';
+            
+            // 生成评分（基于收集的食材数量）
+            const rating = Math.min(5, Math.ceil((gameState.ingredientsCollected / cuisine.ingredients.length) * 5));
+            const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+            
+            // 检查是否有专门的成品图片
+            let resultImageContent;
+            if (cuisine.result.image) {
+                // 使用指定的成品图片
+                resultImageContent = `<div class="result-image" style="background-image: url('${cuisine.result.image}');"></div>`;
+            } else {
+                // 如果没有图片，使用虚拟图片
+                resultImageContent = `
+                    <div class="result-image">
+                        <div class="result-image-placeholder">
+                            <div class="result-image-icon">
+                                <i class="${cuisine.result.icon}"></i>
+                            </div>
+                            <div class="result-image-text">${getText(cuisine.dish)}</div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            resultContainer.innerHTML = `
+                <div class="result-container">
+                    <h2 class="result-title">${getText(cuisine.result.title)}</h2>
+                    ${resultImageContent}
+                    <div class="result-message">${getText(cuisine.result.description)}</div>
+                    <div class="result-rating">
+                        <span data-lang="zh">你的评分：</span><span data-lang="en" style="display:none;">Your rating:</span> ${stars} (${rating}/5)
+                    </div>
+                </div>
+            `;
+            
+            // 滚动到结果区域
+            resultPanel.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 重新开始
+        function restartGame() {
+            playSound(clickSound);
+            
+            // 重置游戏状态
+            gameState.currentStep = 0;
+            gameState.isCooking = false;
+            gameState.ingredientsCollected = 0;
+            
+            // 隐藏结果面板
+            resultPanel.style.display = 'none';
+            
+            // 显示开始按钮
+            startSection.style.display = 'flex';
+            
+            // 重置食材显示
+            displayIngredients();
+            
+            // 清空步骤容器
+            stepsContainer.innerHTML = `<p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">点击"开始烹饪"按钮后，将显示烹饪步骤</p>
+                                       <p style="text-align: center; padding: 30px 0; color: #888; display: none;" data-lang="en">After clicking "Start Cooking", cooking steps will be displayed</p>`;
+            
+            // 滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 尝试另一道菜
+        function tryAnotherDish() {
+            playSound(clickSound);
+            
+            // 重置游戏状态
+            gameState.selectedCuisine = null;
+            gameState.currentStep = 0;
+            gameState.isCooking = false;
+            gameState.ingredientsCollected = 0;
+            
+            // 隐藏结果面板和步骤控制
+            resultPanel.style.display = 'none';
+            stepControls.style.display = 'none';
+            
+            // 隐藏开始按钮
+            startSection.style.display = 'none';
+            
+            // 重置食材显示
+            ingredientsContainer.innerHTML = `<p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">选择菜系后，将显示所需食材</p>
+                                            <p style="text-align: center; padding: 30px 0; color: #888; display: none;" data-lang="en">After selecting a cuisine, required ingredients will be displayed</p>`;
+            
+            // 重置步骤容器
+            stepsContainer.innerHTML = `<p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">点击"开始烹饪"按钮后，将显示烹饪步骤</p>
+                                       <p style="text-align: center; padding: 30px 0; color: #888; display: none;" data-lang="en">After clicking "Start Cooking", cooking steps will be displayed</p>`;
+            
+            // 取消选中菜系卡片
+            document.querySelectorAll('.cuisine-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // 滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 播放音效
+        function playSound(audioElement) {
+            if (!gameState.audioEnabled) return;
+            
+            audioElement.currentTime = 0;
+            audioElement.play().catch(e => console.log("音频播放失败:", e));
+        }
+
+        // 切换音频状态
+        function toggleAudio() {
+            gameState.audioEnabled = !gameState.audioEnabled;
+            
+            if (gameState.audioEnabled) {
+                audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                bgMusic.play().catch(e => console.log("背景音乐播放失败:", e));
+            } else {
+                audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                bgMusic.pause();
+            }
+        }
+
+        // 事件监听
+        startCookingBtn.addEventListener('click', startCooking);
+        prevStepBtn.addEventListener('click', prevStep);
+        nextStepBtn.addEventListener('click', nextStep);
+        restartBtn.addEventListener('click', restartGame);
+        tryAnotherBtn.addEventListener('click', tryAnotherDish);
+        audioControl.addEventListener('click', toggleAudio);
+        langCnBtn.addEventListener('click', () => switchLanguage('zh'));
+        langEnBtn.addEventListener('click', () => switchLanguage('en'));
+
+        // 初始化游戏
+        function initGame() {
+            initCuisineSelection();
+            
+            // 初始化语言显示
+            switchLanguage('zh');
+            
+            // 尝试自动播放背景音乐（用户交互后）
+            document.addEventListener('click', function initAudio() {
+                if (gameState.audioEnabled) {
+                    bgMusic.volume = 0.3;
+                    bgMusic.play().catch(e => console.log("背景音乐播放失败:", e));
+                }
+                document.removeEventListener('click', initAudio);
+            });
+        }
+
+        // 页面加载完成后初始化游戏
+        window.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>

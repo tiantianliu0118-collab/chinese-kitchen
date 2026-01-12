@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ÖĞ²Í³ø·¿ - Åëâ¿ÓÎÏ· (Chinese Kitchen - Cooking Game)</title>
+    <title>ä¸­é¤å¨æˆ¿ - çƒ¹é¥ªæ¸¸æˆ (Chinese Kitchen - Cooking Game)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -117,7 +117,7 @@
             color: #ff9966;
         }
         
-        /* ²ËÏµÑ¡ÔñÇøÓò */
+        /* èœç³»é€‰æ‹©åŒºåŸŸ */
         .cuisine-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -165,7 +165,7 @@
             color: #666;
         }
         
-        /* Åëâ¿²½ÖèÇøÓò */
+        /* çƒ¹é¥ªæ­¥éª¤åŒºåŸŸ */
         .step-container {
             display: none;
         }
@@ -282,7 +282,7 @@
             background: linear-gradient(to right, #36d1dc, #5b86e5);
         }
         
-        /* Ê³²ÄÕ¹Ê¾ÇøÓò */
+        /* é£Ÿæå±•ç¤ºåŒºåŸŸ */
         .ingredients-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -319,7 +319,7 @@
             color: #4CAF50;
         }
         
-        /* ³É¹ûÕ¹Ê¾ÇøÓò */
+        /* æˆæœå±•ç¤ºåŒºåŸŸ */
         .result-container {
             text-align: center;
             padding: 40px 20px;
@@ -382,7 +382,7 @@
             margin-bottom: 30px;
         }
         
-        /* ÓÎÏ·¿ØÖÆÇøÓò */
+        /* æ¸¸æˆæ§åˆ¶åŒºåŸŸ */
         .game-controls {
             display: flex;
             justify-content: center;
@@ -415,7 +415,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        /* ÒôÆµ¿ØÖÆ */
+        /* éŸ³é¢‘æ§åˆ¶ */
         .audio-control {
             position: fixed;
             bottom: 20px;
@@ -434,7 +434,7 @@
             color: #ff5e62;
         }
         
-        /* ÏìÓ¦Ê½µ÷Õû */
+        /* å“åº”å¼è°ƒæ•´ */
         @media (max-width: 768px) {
             .game-area {
                 flex-direction: column;
@@ -480,97 +480,97 @@
     <div class="container">
         <header>
             <div class="language-switcher">
-                <button class="lang-btn active" id="langCn">ÖĞÎÄ</button>
+                <button class="lang-btn active" id="langCn">ä¸­æ–‡</button>
                 <button class="lang-btn" id="langEn">English</button>
             </div>
-            <h1><i class="fas fa-utensils"></i> <span data-lang="zh">ÖĞ²Í³ø·¿</span><span data-lang="en" style="display:none;">Chinese Kitchen</span></h1>
-            <p><span data-lang="zh">Í¨¹ıÓÎÏ·ÌåÑéÖÆ×÷¾­µäÖĞ²ÍµÄÀÖÈ¤£¡´Ó°Ë´ó²ËÏµÖĞÑ¡ÔñÒ»µÀ²ËëÈ£¬°´ÕÕ²½ÖèÅëâ¿£¬ÏíÊÜÖÆ×÷ÖĞ²ÍµÄ³É¾Í¸Ğ¡£</span><span data-lang="en" style="display:none;">Experience the joy of making classic Chinese dishes through games! Choose a dish from eight major cuisines, follow the steps, and enjoy the sense of accomplishment.</span></p>
+            <h1><i class="fas fa-utensils"></i> <span data-lang="zh">ä¸­é¤å¨æˆ¿</span><span data-lang="en" style="display:none;">Chinese Kitchen</span></h1>
+            <p><span data-lang="zh">é€šè¿‡æ¸¸æˆä½“éªŒåˆ¶ä½œç»å…¸ä¸­é¤çš„ä¹è¶£ï¼ä»å…«å¤§èœç³»ä¸­é€‰æ‹©ä¸€é“èœè‚´ï¼ŒæŒ‰ç…§æ­¥éª¤çƒ¹é¥ªï¼Œäº«å—åˆ¶ä½œä¸­é¤çš„æˆå°±æ„Ÿã€‚</span><span data-lang="en" style="display:none;">Experience the joy of making classic Chinese dishes through games! Choose a dish from eight major cuisines, follow the steps, and enjoy the sense of accomplishment.</span></p>
         </header>
         
         <div class="game-container">
-            <!-- ²ËÏµÑ¡ÔñÃæ°å -->
+            <!-- èœç³»é€‰æ‹©é¢æ¿ -->
             <div class="panel">
                 <div class="panel-title">
-                    <i class="fas fa-list-ul"></i> <span data-lang="zh">Ñ¡Ôñ²ËÏµºÍ²ËëÈ</span><span data-lang="en" style="display:none;">Select Cuisine and Dish</span>
+                    <i class="fas fa-list-ul"></i> <span data-lang="zh">é€‰æ‹©èœç³»å’Œèœè‚´</span><span data-lang="en" style="display:none;">Select Cuisine and Dish</span>
                 </div>
-                <p style="margin-bottom: 20px;"><span data-lang="zh">Çë´Ó°Ë´ó²ËÏµÖĞÑ¡ÔñÒ»µÀÄãÏëÒªÑ§Ï°µÄ¾­µä²ËëÈ£º</span><span data-lang="en" style="display:none;">Please select a classic dish you want to learn from the eight major cuisines:</span></p>
+                <p style="margin-bottom: 20px;"><span data-lang="zh">è¯·ä»å…«å¤§èœç³»ä¸­é€‰æ‹©ä¸€é“ä½ æƒ³è¦å­¦ä¹ çš„ç»å…¸èœè‚´ï¼š</span><span data-lang="en" style="display:none;">Please select a classic dish you want to learn from the eight major cuisines:</span></p>
                 
                 <div class="cuisine-grid" id="cuisineGrid">
-                    <!-- ²ËÏµ¿¨Æ¬½«Í¨¹ıJavaScript¶¯Ì¬Éú³É -->
+                    <!-- èœç³»å¡ç‰‡å°†é€šè¿‡JavaScriptåŠ¨æ€ç”Ÿæˆ -->
                 </div>
                 
                 <div class="game-controls" id="startSection" style="display: none; margin-top: 30px;">
                     <button class="control-btn primary" id="startCookingBtn">
-                        <i class="fas fa-fire"></i> <span data-lang="zh">¿ªÊ¼Åëâ¿</span><span data-lang="en" style="display:none;">Start Cooking</span>
+                        <i class="fas fa-fire"></i> <span data-lang="zh">å¼€å§‹çƒ¹é¥ª</span><span data-lang="en" style="display:none;">Start Cooking</span>
                     </button>
                 </div>
             </div>
             
             <div class="game-area">
-                <!-- Ê³²ÄÕ¹Ê¾ÇøÓò -->
+                <!-- é£Ÿæå±•ç¤ºåŒºåŸŸ -->
                 <div class="panel">
                     <div class="panel-title">
-                        <i class="fas fa-carrot"></i> <span data-lang="zh">ËùĞèÊ³²Ä</span><span data-lang="en" style="display:none;">Required Ingredients</span>
+                        <i class="fas fa-carrot"></i> <span data-lang="zh">æ‰€éœ€é£Ÿæ</span><span data-lang="en" style="display:none;">Required Ingredients</span>
                     </div>
                     <div id="ingredientsContainer">
-                        <p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">Ñ¡Ôñ²ËÏµºó£¬½«ÏÔÊ¾ËùĞèÊ³²Ä</p>
+                        <p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">é€‰æ‹©èœç³»åï¼Œå°†æ˜¾ç¤ºæ‰€éœ€é£Ÿæ</p>
                         <p style="text-align: center; padding: 30px 0; color: #888; display: none;" data-lang="en">After selecting a cuisine, required ingredients will be displayed</p>
                     </div>
                 </div>
                 
-                <!-- Åëâ¿²½ÖèÇøÓò -->
+                <!-- çƒ¹é¥ªæ­¥éª¤åŒºåŸŸ -->
                 <div class="panel">
                     <div class="panel-title">
-                        <i class="fas fa-mortar-pestle"></i> <span data-lang="zh">Åëâ¿²½Öè</span><span data-lang="en" style="display:none;">Cooking Steps</span>
+                        <i class="fas fa-mortar-pestle"></i> <span data-lang="zh">çƒ¹é¥ªæ­¥éª¤</span><span data-lang="en" style="display:none;">Cooking Steps</span>
                     </div>
                     <div id="stepsContainer">
-                        <p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">µã»÷"¿ªÊ¼Åëâ¿"°´Å¥ºó£¬½«ÏÔÊ¾Åëâ¿²½Öè</p>
+                        <p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">ç‚¹å‡»"å¼€å§‹çƒ¹é¥ª"æŒ‰é’®åï¼Œå°†æ˜¾ç¤ºçƒ¹é¥ªæ­¥éª¤</p>
                         <p style="text-align: center; padding: 30px 0; color: #888; display: none;" data-lang="en">After clicking "Start Cooking", cooking steps will be displayed</p>
                     </div>
                     
                     <div class="game-controls" id="stepControls" style="display: none;">
                         <button class="control-btn secondary" id="prevStepBtn">
-                            <i class="fas fa-arrow-left"></i> <span data-lang="zh">ÉÏÒ»²½</span><span data-lang="en" style="display:none;">Previous</span>
+                            <i class="fas fa-arrow-left"></i> <span data-lang="zh">ä¸Šä¸€æ­¥</span><span data-lang="en" style="display:none;">Previous</span>
                         </button>
                         <button class="control-btn primary" id="nextStepBtn">
-                            <span data-lang="zh">ÏÂÒ»²½</span><span data-lang="en" style="display:none;">Next</span> <i class="fas fa-arrow-right"></i>
+                            <span data-lang="zh">ä¸‹ä¸€æ­¥</span><span data-lang="en" style="display:none;">Next</span> <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
             </div>
             
-            <!-- ³É¹ûÕ¹Ê¾ÇøÓò -->
+            <!-- æˆæœå±•ç¤ºåŒºåŸŸ -->
             <div class="panel" id="resultPanel" style="display: none;">
                 <div class="panel-title">
-                    <i class="fas fa-award"></i> <span data-lang="zh">Åëâ¿³É¹û</span><span data-lang="en" style="display:none;">Cooking Result</span>
+                    <i class="fas fa-award"></i> <span data-lang="zh">çƒ¹é¥ªæˆæœ</span><span data-lang="en" style="display:none;">Cooking Result</span>
                 </div>
                 <div id="resultContainer"></div>
                 
                 <div class="game-controls" style="margin-top: 30px;">
                     <button class="control-btn secondary" id="restartBtn">
-                        <i class="fas fa-redo"></i> <span data-lang="zh">ÖØĞÂ¿ªÊ¼</span><span data-lang="en" style="display:none;">Restart</span>
+                        <i class="fas fa-redo"></i> <span data-lang="zh">é‡æ–°å¼€å§‹</span><span data-lang="en" style="display:none;">Restart</span>
                     </button>
                     <button class="control-btn primary" id="tryAnotherBtn">
-                        <i class="fas fa-random"></i> <span data-lang="zh">³¢ÊÔÁíÒ»µÀ²Ë</span><span data-lang="en" style="display:none;">Try Another Dish</span>
+                        <i class="fas fa-random"></i> <span data-lang="zh">å°è¯•å¦ä¸€é“èœ</span><span data-lang="en" style="display:none;">Try Another Dish</span>
                     </button>
                 </div>
             </div>
         </div>
         
-        <!-- ÒôÆµ¿ØÖÆ -->
+        <!-- éŸ³é¢‘æ§åˆ¶ -->
         <div class="audio-control" id="audioControl">
             <i class="fas fa-volume-up"></i>
         </div>
     </div>
 
-    <!-- ÒôÆµÔªËØ -->
+    <!-- éŸ³é¢‘å…ƒç´  -->
     <audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3"></audio>
     <audio id="sizzleSound" src="https://assets.mixkit.co/sfx/preview/mixkit-cooking-oil-and-ingredients-1712.mp3"></audio>
     <audio id="chopSound" src="https://assets.mixkit.co/sfx/preview/mixkit-chopping-vegetables-2475.mp3"></audio>
     <audio id="successSound" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3"></audio>
     <audio id="bgMusic" loop src="https://assets.mixkit.co/music/preview/mixkit-kitchen-melody-581.mp3"></audio>
     
-    <!-- ĞÂÔöÒôĞ§ -->
+    <!-- æ–°å¢éŸ³æ•ˆ -->
     <audio id="splashSound" src="https://assets.mixkit.co/sfx/preview/mixkit-water-splash-1333.mp3"></audio>
     <audio id="pourSound" src="https://assets.mixkit.co/sfx/preview/mixkit-pouring-sauce-1323.mp3"></audio>
     <audio id="stirSound" src="https://assets.mixkit.co/sfx/preview/mixkit-stirring-in-a-pot-1326.mp3"></audio>
@@ -582,504 +582,504 @@
     <audio id="plateSound" src="https://assets.mixkit.co/sfx/preview/mixkit-plate-clatter-1327.mp3"></audio>
 
     <script>
-        // ÓÎÏ·Êı¾İ - °Ë´ó²ËÏµ¼°Æä²ËëÈ
+        // æ¸¸æˆæ•°æ® - å…«å¤§èœç³»åŠå…¶èœè‚´
         const cuisines = [
             {
                 id: 1,
-                name: { zh: "´¨²Ë", en: "Sichuan Cuisine" },
-                dish: { zh: "¹¬±£¼¦¶¡", en: "Kung Pao Chicken" },
+                name: { zh: "å·èœ", en: "Sichuan Cuisine" },
+                dish: { zh: "å®«ä¿é¸¡ä¸", en: "Kung Pao Chicken" },
                 icon: "fas fa-pepper-hot",
                 color: "#e63946",
                 ingredients: [
-                    { name: { zh: "¼¦ĞØÈâ", en: "Chicken Breast" }, icon: "fas fa-drumstick-bite", collected: false },
-                    { name: { zh: "»¨ÉúÃ×", en: "Peanuts" }, icon: "fas fa-seedling", collected: false },
-                    { name: { zh: "¸ÉÀ±½·", en: "Dried Chili" }, icon: "fas fa-fire", collected: false },
-                    { name: { zh: "´Ğ½ªËâ", en: "Green Onion, Ginger, Garlic" }, icon: "fas fa-leaf", collected: false },
-                    { name: { zh: "½´ÓÍ", en: "Soy Sauce" }, icon: "fas fa-flask", collected: false },
-                    { name: { zh: "´×", en: "Vinegar" }, icon: "fas fa-tint", collected: false },
-                    { name: { zh: "ÌÇ", en: "Sugar" }, icon: "fas fa-cube", collected: false },
-                    { name: { zh: "µí·Û", en: "Starch" }, icon: "fas fa-vial", collected: false }
+                    { name: { zh: "é¸¡èƒ¸è‚‰", en: "Chicken Breast" }, icon: "fas fa-drumstick-bite", collected: false },
+                    { name: { zh: "èŠ±ç”Ÿç±³", en: "Peanuts" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "å¹²è¾£æ¤’", en: "Dried Chili" }, icon: "fas fa-fire", collected: false },
+                    { name: { zh: "è‘±å§œè’œ", en: "Green Onion, Ginger, Garlic" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "é…±æ²¹", en: "Soy Sauce" }, icon: "fas fa-flask", collected: false },
+                    { name: { zh: "é†‹", en: "Vinegar" }, icon: "fas fa-tint", collected: false },
+                    { name: { zh: "ç³–", en: "Sugar" }, icon: "fas fa-cube", collected: false },
+                    { name: { zh: "æ·€ç²‰", en: "Starch" }, icon: "fas fa-vial", collected: false }
                 ],
                 steps: [
                     {
-                        title: { zh: "×¼±¸Ê³²Ä", en: "Prepare Ingredients" },
-                        description: { zh: "½«¼¦ĞØÈâÇĞ³É1.5ÀåÃ×¼û·½µÄ¶¡£¬¼ÓÈëÉÙĞíÑÎ¡¢ÁÏ¾ÆºÍµí·Û°èÔÈëçÖÆ10·ÖÖÓ¡£´ĞÇĞ¶Î£¬½ªËâÇĞÆ¬£¬¸ÉÀ±½·¼ô³ÉĞ¡¶Î¡£", en: "Cut chicken breast into 1.5cm cubes, marinate with a little salt, cooking wine and starch for 10 minutes. Cut green onions into sections, slice ginger and garlic, cut dried chili into small pieces." },
+                        title: { zh: "å‡†å¤‡é£Ÿæ", en: "Prepare Ingredients" },
+                        description: { zh: "å°†é¸¡èƒ¸è‚‰åˆ‡æˆ1.5å˜ç±³è§æ–¹çš„ä¸ï¼ŒåŠ å…¥å°‘è®¸ç›ã€æ–™é…’å’Œæ·€ç²‰æ‹ŒåŒ€è…Œåˆ¶10åˆ†é’Ÿã€‚è‘±åˆ‡æ®µï¼Œå§œè’œåˆ‡ç‰‡ï¼Œå¹²è¾£æ¤’å‰ªæˆå°æ®µã€‚", en: "Cut chicken breast into 1.5cm cubes, marinate with a little salt, cooking wine and starch for 10 minutes. Cut green onions into sections, slice ginger and garlic, cut dried chili into small pieces." },
                         icon: "fas fa-utensils",
-                        interaction: { zh: "µã»÷ëçÖÆ¼¦Èâ", en: "Click to marinate chicken" },
+                        interaction: { zh: "ç‚¹å‡»è…Œåˆ¶é¸¡è‚‰", en: "Click to marinate chicken" },
                         sound: "marinateSound"
                     },
                     {
-                        title: { zh: "µ÷ÖÆ¹¬±£Ö­", en: "Prepare Kung Pao Sauce" },
-                        description: { zh: "È¡Ò»Ğ¡Íë£¬¼ÓÈë2É×½´ÓÍ¡¢1É×´×¡¢1É×ÌÇ¡¢°ëÉ×µí·ÛºÍ3É×ÇåË®£¬½Á°è¾ùÔÈ³É¹¬±£Ö­±¸ÓÃ¡£", en: "Take a small bowl, add 2 spoons of soy sauce, 1 spoon of vinegar, 1 spoon of sugar, half spoon of starch and 3 spoons of water, mix well to make Kung Pao sauce." },
+                        title: { zh: "è°ƒåˆ¶å®«ä¿æ±", en: "Prepare Kung Pao Sauce" },
+                        description: { zh: "å–ä¸€å°ç¢—ï¼ŒåŠ å…¥2å‹ºé…±æ²¹ã€1å‹ºé†‹ã€1å‹ºç³–ã€åŠå‹ºæ·€ç²‰å’Œ3å‹ºæ¸…æ°´ï¼Œæ…æ‹Œå‡åŒ€æˆå®«ä¿æ±å¤‡ç”¨ã€‚", en: "Take a small bowl, add 2 spoons of soy sauce, 1 spoon of vinegar, 1 spoon of sugar, half spoon of starch and 3 spoons of water, mix well to make Kung Pao sauce." },
                         icon: "fas fa-flask",
-                        interaction: { zh: "µã»÷µ÷ÖÆ½´Ö­", en: "Click to prepare sauce" },
+                        interaction: { zh: "ç‚¹å‡»è°ƒåˆ¶é…±æ±", en: "Click to prepare sauce" },
                         sound: "stirSound"
                     },
                     {
-                        title: { zh: "³´ÖÆ¼¦Èâ", en: "Stir-fry Chicken" },
-                        description: { zh: "ÈÈ¹øÁ¹ÓÍ£¬ÓÍÎÂÁù³ÉÈÈÊ±·ÅÈë¼¦¶¡»¬³´ÖÁ±äÉ«£¬Ê¢³ö±¸ÓÃ¡£", en: "Heat the pan with oil, when the oil is 60% hot, add chicken cubes and stir-fry until color changes, then set aside." },
+                        title: { zh: "ç‚’åˆ¶é¸¡è‚‰", en: "Stir-fry Chicken" },
+                        description: { zh: "çƒ­é”…å‡‰æ²¹ï¼Œæ²¹æ¸©å…­æˆçƒ­æ—¶æ”¾å…¥é¸¡ä¸æ»‘ç‚’è‡³å˜è‰²ï¼Œç››å‡ºå¤‡ç”¨ã€‚", en: "Heat the pan with oil, when the oil is 60% hot, add chicken cubes and stir-fry until color changes, then set aside." },
                         icon: "fas fa-fire",
-                        interaction: { zh: "µã»÷·­³´¼¦Èâ", en: "Click to stir-fry chicken" },
+                        interaction: { zh: "ç‚¹å‡»ç¿»ç‚’é¸¡è‚‰", en: "Click to stir-fry chicken" },
                         sound: "frySound"
                     },
                     {
-                        title: { zh: "±¬Ïãµ÷ÁÏ", en: "Saut¨¦ Aromatics" },
-                        description: { zh: "¹øÖĞÁôµ×ÓÍ£¬·ÅÈë¸ÉÀ±½·¶Î¡¢»¨½·ºÍ´Ğ½ªËâ±¬Ïã£¬³´³öºìÓÍºÍÏãÎ¶¡£", en: "Leave some oil in the pan, add dried chili, Sichuan pepper, green onion, ginger and garlic, saut¨¦ until fragrant and red oil appears." },
+                        title: { zh: "çˆ†é¦™è°ƒæ–™", en: "SautÃ© Aromatics" },
+                        description: { zh: "é”…ä¸­ç•™åº•æ²¹ï¼Œæ”¾å…¥å¹²è¾£æ¤’æ®µã€èŠ±æ¤’å’Œè‘±å§œè’œçˆ†é¦™ï¼Œç‚’å‡ºçº¢æ²¹å’Œé¦™å‘³ã€‚", en: "Leave some oil in the pan, add dried chili, Sichuan pepper, green onion, ginger and garlic, sautÃ© until fragrant and red oil appears." },
                         icon: "fas fa-pepper-hot",
-                        interaction: { zh: "µã»÷±¬Ïãµ÷ÁÏ", en: "Click to saut¨¦ aromatics" },
+                        interaction: { zh: "ç‚¹å‡»çˆ†é¦™è°ƒæ–™", en: "Click to sautÃ© aromatics" },
                         sound: "sizzleSound"
                     },
                     {
-                        title: { zh: "»ìºÏ·­³´", en: "Combine and Stir-fry" },
-                        description: { zh: "½«³´ºÃµÄ¼¦¶¡µ¹»Ø¹øÖĞ£¬¿ìËÙ·­³´¾ùÔÈ£¬È»ºóµ¹Èëµ÷ºÃµÄ¹¬±£Ö­£¬´ó»ğ¿ìËÙ·­³´ÊÕÖ­¡£", en: "Return chicken to the pan, stir-fry quickly, then add the prepared Kung Pao sauce, stir-fry over high heat to reduce the sauce." },
+                        title: { zh: "æ··åˆç¿»ç‚’", en: "Combine and Stir-fry" },
+                        description: { zh: "å°†ç‚’å¥½çš„é¸¡ä¸å€’å›é”…ä¸­ï¼Œå¿«é€Ÿç¿»ç‚’å‡åŒ€ï¼Œç„¶åå€’å…¥è°ƒå¥½çš„å®«ä¿æ±ï¼Œå¤§ç«å¿«é€Ÿç¿»ç‚’æ”¶æ±ã€‚", en: "Return chicken to the pan, stir-fry quickly, then add the prepared Kung Pao sauce, stir-fry over high heat to reduce the sauce." },
                         icon: "fas fa-random",
-                        interaction: { zh: "µã»÷¿ìËÙ·­³´", en: "Click to stir-fry quickly" },
+                        interaction: { zh: "ç‚¹å‡»å¿«é€Ÿç¿»ç‚’", en: "Click to stir-fry quickly" },
                         sound: "stirSound"
                     },
                     {
-                        title: { zh: "¼ÓÈë»¨ÉúÃ×", en: "Add Peanuts" },
-                        description: { zh: "×îºó¼ÓÈëÕ¨ºÃµÄ»¨ÉúÃ×£¬¿ìËÙ·­³´¼¸ÏÂ¼´¿É³ö¹ø¡£¹¬±£¼¦¶¡Íê³É£¡", en: "Finally add fried peanuts, stir-fry a few times and serve. Kung Pao Chicken is ready!" },
+                        title: { zh: "åŠ å…¥èŠ±ç”Ÿç±³", en: "Add Peanuts" },
+                        description: { zh: "æœ€ååŠ å…¥ç‚¸å¥½çš„èŠ±ç”Ÿç±³ï¼Œå¿«é€Ÿç¿»ç‚’å‡ ä¸‹å³å¯å‡ºé”…ã€‚å®«ä¿é¸¡ä¸å®Œæˆï¼", en: "Finally add fried peanuts, stir-fry a few times and serve. Kung Pao Chicken is ready!" },
                         icon: "fas fa-plus-circle",
-                        interaction: { zh: "µã»÷¼ÓÈë»¨ÉúÃ×", en: "Click to add peanuts" },
+                        interaction: { zh: "ç‚¹å‡»åŠ å…¥èŠ±ç”Ÿç±³", en: "Click to add peanuts" },
                         sound: "plateSound"
                     }
                 ],
                 result: {
-                    title: { zh: "¹¬±£¼¦¶¡Íê³É£¡", en: "Kung Pao Chicken Complete!" },
-                    description: { zh: "¹§Ï²Äã³É¹¦ÖÆ×÷ÁË¾­µäµÄ´¨²Ë¹¬±£¼¦¶¡£¡ÕâµÀ²ËÉ«ÔóºìÁÁ£¬¼¦ÈâÏÊÄÛ£¬»¨ÉúÃ×Ïã´à£¬¿ÚÎ¶ÂéÀ±ËáÌğ£¬·Ç³£ÏÂ·¹¡£", en: "Congratulations! You've successfully made classic Sichuan Kung Pao Chicken! This dish has bright red color, tender chicken, crispy peanuts, and a spicy, sweet and sour flavor that goes perfectly with rice." },
+                    title: { zh: "å®«ä¿é¸¡ä¸å®Œæˆï¼", en: "Kung Pao Chicken Complete!" },
+                    description: { zh: "æ­å–œä½ æˆåŠŸåˆ¶ä½œäº†ç»å…¸çš„å·èœå®«ä¿é¸¡ä¸ï¼è¿™é“èœè‰²æ³½çº¢äº®ï¼Œé¸¡è‚‰é²œå«©ï¼ŒèŠ±ç”Ÿç±³é¦™è„†ï¼Œå£å‘³éº»è¾£é…¸ç”œï¼Œéå¸¸ä¸‹é¥­ã€‚", en: "Congratulations! You've successfully made classic Sichuan Kung Pao Chicken! This dish has bright red color, tender chicken, crispy peanuts, and a spicy, sweet and sour flavor that goes perfectly with rice." },
                     image: "https://materials.cdn.bcebos.com/images/27363799/1548089eaca814ca81b188c35d0a2d52.jpeg",
                     icon: "fas fa-pepper-hot"
                 }
             },
             {
                 id: 2,
-                name: { zh: "ÔÁ²Ë", en: "Cantonese Cuisine" },
-                dish: { zh: "ÇåÕôöÔÓã", en: "Steamed Sea Bass" },
+                name: { zh: "ç²¤èœ", en: "Cantonese Cuisine" },
+                dish: { zh: "æ¸…è’¸é²ˆé±¼", en: "Steamed Sea Bass" },
                 icon: "fas fa-fish",
                 color: "#1d3557",
                 ingredients: [
-                    { name: { zh: "ĞÂÏÊöÔÓã", en: "Fresh Sea Bass" }, icon: "fas fa-fish", collected: false },
-                    { name: { zh: "½ª", en: "Ginger" }, icon: "fas fa-leaf", collected: false },
-                    { name: { zh: "´Ğ", en: "Green Onion" }, icon: "fas fa-seedling", collected: false },
-                    { name: { zh: "ºì½·", en: "Red Pepper" }, icon: "fas fa-pepper-hot", collected: false },
-                    { name: { zh: "ÕôÓãôùÓÍ", en: "Steamed Fish Soy Sauce" }, icon: "fas fa-flask", collected: false },
-                    { name: { zh: "ÁÏ¾Æ", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
-                    { name: { zh: "ÑÎ", en: "Salt" }, icon: "fas fa-mortar-pestle", collected: false },
-                    { name: { zh: "Ê³ÓÃÓÍ", en: "Cooking Oil" }, icon: "fas fa-oil-can", collected: false }
+                    { name: { zh: "æ–°é²œé²ˆé±¼", en: "Fresh Sea Bass" }, icon: "fas fa-fish", collected: false },
+                    { name: { zh: "å§œ", en: "Ginger" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "è‘±", en: "Green Onion" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "çº¢æ¤’", en: "Red Pepper" }, icon: "fas fa-pepper-hot", collected: false },
+                    { name: { zh: "è’¸é±¼è±‰æ²¹", en: "Steamed Fish Soy Sauce" }, icon: "fas fa-flask", collected: false },
+                    { name: { zh: "æ–™é…’", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
+                    { name: { zh: "ç›", en: "Salt" }, icon: "fas fa-mortar-pestle", collected: false },
+                    { name: { zh: "é£Ÿç”¨æ²¹", en: "Cooking Oil" }, icon: "fas fa-oil-can", collected: false }
                 ],
                 steps: [
                     {
-                        title: { zh: "´¦ÀíöÔÓã", en: "Prepare the Fish" },
-                        description: { zh: "½«öÔÓãÈ¥ÁÛ¡¢È¥ÄÚÔà£¬ÇåÏ´¸É¾»¡£ÔÚÓãÉíÁ½Ãæ¸÷»®¼¸µ¶£¬ÓÃÁÏ¾ÆºÍÑÎ¾ùÔÈÍ¿Ä¨ÓãÉí£¬ëçÖÆ10·ÖÖÓÈ¥ĞÈ¡£", en: "Scale and clean the sea bass. Make several cuts on both sides, rub with cooking wine and salt, marinate for 10 minutes to remove fishy smell." },
+                        title: { zh: "å¤„ç†é²ˆé±¼", en: "Prepare the Fish" },
+                        description: { zh: "å°†é²ˆé±¼å»é³ã€å»å†…è„ï¼Œæ¸…æ´—å¹²å‡€ã€‚åœ¨é±¼èº«ä¸¤é¢å„åˆ’å‡ åˆ€ï¼Œç”¨æ–™é…’å’Œç›å‡åŒ€æ¶‚æŠ¹é±¼èº«ï¼Œè…Œåˆ¶10åˆ†é’Ÿå»è…¥ã€‚", en: "Scale and clean the sea bass. Make several cuts on both sides, rub with cooking wine and salt, marinate for 10 minutes to remove fishy smell." },
                         icon: "fas fa-cut",
-                        interaction: { zh: "µã»÷´¦ÀíöÔÓã", en: "Click to prepare fish" },
+                        interaction: { zh: "ç‚¹å‡»å¤„ç†é²ˆé±¼", en: "Click to prepare fish" },
                         sound: "knifeSound"
                     },
                     {
-                        title: { zh: "×¼±¸ÅäÁÏ", en: "Prepare Ingredients" },
-                        description: { zh: "½«½ªÇĞ³ÉÏ¸Ë¿£¬´Ğ°×ÇĞ¶Î£¬´ĞÂÌÇĞË¿£¬ºì½·È¥×ÑÇĞË¿¡£½«´Ğ¶ÎµæÔÚÓãÅÌµ×²¿£¬Óã·ÅÔÚ´Ğ¶ÎÉÏ¡£", en: "Cut ginger into thin strips, cut white part of green onion into sections, cut green part into strips, remove seeds from red pepper and cut into strips. Place onion sections at the bottom of the plate, put fish on top." },
+                        title: { zh: "å‡†å¤‡é…æ–™", en: "Prepare Ingredients" },
+                        description: { zh: "å°†å§œåˆ‡æˆç»†ä¸ï¼Œè‘±ç™½åˆ‡æ®µï¼Œè‘±ç»¿åˆ‡ä¸ï¼Œçº¢æ¤’å»ç±½åˆ‡ä¸ã€‚å°†è‘±æ®µå«åœ¨é±¼ç›˜åº•éƒ¨ï¼Œé±¼æ”¾åœ¨è‘±æ®µä¸Šã€‚", en: "Cut ginger into thin strips, cut white part of green onion into sections, cut green part into strips, remove seeds from red pepper and cut into strips. Place onion sections at the bottom of the plate, put fish on top." },
                         icon: "fas fa-carrot",
-                        interaction: { zh: "µã»÷ÇĞÅäÁÏ", en: "Click to cut ingredients" },
+                        interaction: { zh: "ç‚¹å‡»åˆ‡é…æ–™", en: "Click to cut ingredients" },
                         sound: "chopSound"
                     },
                     {
-                        title: { zh: "ÕôÖÆöÔÓã", en: "Steam the Fish" },
-                        description: { zh: "Õô¹ø¼ÓË®ÉÕ¿ª£¬½«ÓãÅÌ·ÅÈëÕô¹øÖĞ£¬´ó»ğÕô8-10·ÖÖÓ£¨ÊÓÓãµÄ´óĞ¡µ÷ÕûÊ±¼ä£©¡£", en: "Add water to steamer and bring to boil, place fish plate in steamer, steam over high heat for 8-10 minutes (adjust time based on fish size)." },
+                        title: { zh: "è’¸åˆ¶é²ˆé±¼", en: "Steam the Fish" },
+                        description: { zh: "è’¸é”…åŠ æ°´çƒ§å¼€ï¼Œå°†é±¼ç›˜æ”¾å…¥è’¸é”…ä¸­ï¼Œå¤§ç«è’¸8-10åˆ†é’Ÿï¼ˆè§†é±¼çš„å¤§å°è°ƒæ•´æ—¶é—´ï¼‰ã€‚", en: "Add water to steamer and bring to boil, place fish plate in steamer, steam over high heat for 8-10 minutes (adjust time based on fish size)." },
                         icon: "fas fa-temperature-high",
-                        interaction: { zh: "µã»÷¿ªÊ¼ÕôÓã", en: "Click to start steaming" },
+                        interaction: { zh: "ç‚¹å‡»å¼€å§‹è’¸é±¼", en: "Click to start steaming" },
                         sound: "steamSound"
                     },
                     {
-                        title: { zh: "ÕôÓãÍê³É", en: "Finish Steaming" },
-                        description: { zh: "ÕôºÃºóÈ¡³öÓãÅÌ£¬µ¹µôÅÌÖĞµÄÌÀÖ­£¨Õâ¸öÌÀÖ­±È½ÏĞÈ£©¡£½«½ªË¿¡¢´ĞË¿ºÍºì½·Ë¿ÆÌÔÚÓãÉíÉÏ¡£", en: "Take out fish plate after steaming, pour out the liquid (which is fishy). Place ginger strips, green onion strips and red pepper strips on the fish." },
+                        title: { zh: "è’¸é±¼å®Œæˆ", en: "Finish Steaming" },
+                        description: { zh: "è’¸å¥½åå–å‡ºé±¼ç›˜ï¼Œå€’æ‰ç›˜ä¸­çš„æ±¤æ±ï¼ˆè¿™ä¸ªæ±¤æ±æ¯”è¾ƒè…¥ï¼‰ã€‚å°†å§œä¸ã€è‘±ä¸å’Œçº¢æ¤’ä¸é“ºåœ¨é±¼èº«ä¸Šã€‚", en: "Take out fish plate after steaming, pour out the liquid (which is fishy). Place ginger strips, green onion strips and red pepper strips on the fish." },
                         icon: "fas fa-tint-slash",
-                        interaction: { zh: "µã»÷µ¹µôÌÀÖ­", en: "Click to pour out liquid" },
+                        interaction: { zh: "ç‚¹å‡»å€’æ‰æ±¤æ±", en: "Click to pour out liquid" },
                         sound: "splashSound"
                     },
                     {
-                        title: { zh: "ÁÜÈÈÓÍ", en: "Pour Hot Oil" },
-                        description: { zh: "¹øÖĞÉÕÈÈ2É×Ê³ÓÃÓÍ£¬ÉÕÖÁÎ¢Î¢Ã°ÑÌ£¬½«ÈÈÓÍ¾ùÔÈÁÜÔÚ´Ğ½ªË¿ºÍÓãÉíÉÏ£¬¼¤·¢³öÏãÎ¶¡£", en: "Heat 2 spoons of cooking oil in a pan until slightly smoking, evenly pour hot oil over green onion, ginger strips and fish to release aroma." },
+                        title: { zh: "æ·‹çƒ­æ²¹", en: "Pour Hot Oil" },
+                        description: { zh: "é”…ä¸­çƒ§çƒ­2å‹ºé£Ÿç”¨æ²¹ï¼Œçƒ§è‡³å¾®å¾®å†’çƒŸï¼Œå°†çƒ­æ²¹å‡åŒ€æ·‹åœ¨è‘±å§œä¸å’Œé±¼èº«ä¸Šï¼Œæ¿€å‘å‡ºé¦™å‘³ã€‚", en: "Heat 2 spoons of cooking oil in a pan until slightly smoking, evenly pour hot oil over green onion, ginger strips and fish to release aroma." },
                         icon: "fas fa-oil-can",
-                        interaction: { zh: "µã»÷ÁÜÈÈÓÍ", en: "Click to pour hot oil" },
+                        interaction: { zh: "ç‚¹å‡»æ·‹çƒ­æ²¹", en: "Click to pour hot oil" },
                         sound: "pourSound"
                     },
                     {
-                        title: { zh: "ÁÜÕôÓãôùÓÍ", en: "Add Soy Sauce" },
-                        description: { zh: "×îºóÑØ×ÅÅÌ±ßÁÜÈëÊÊÁ¿µÄÕôÓãôùÓÍ¡£ÇåÕôöÔÓãÍê³É£¡", en: "Finally pour steamed fish soy sauce along the edge of the plate. Steamed Sea Bass is ready!" },
+                        title: { zh: "æ·‹è’¸é±¼è±‰æ²¹", en: "Add Soy Sauce" },
+                        description: { zh: "æœ€åæ²¿ç€ç›˜è¾¹æ·‹å…¥é€‚é‡çš„è’¸é±¼è±‰æ²¹ã€‚æ¸…è’¸é²ˆé±¼å®Œæˆï¼", en: "Finally pour steamed fish soy sauce along the edge of the plate. Steamed Sea Bass is ready!" },
                         icon: "fas fa-flask",
-                        interaction: { zh: "µã»÷ÁÜôùÓÍ", en: "Click to add soy sauce" },
+                        interaction: { zh: "ç‚¹å‡»æ·‹è±‰æ²¹", en: "Click to add soy sauce" },
                         sound: "pourSound"
                     }
                 ],
                 result: {
-                    title: { zh: "ÇåÕôöÔÓãÍê³É£¡", en: "Steamed Sea Bass Complete!" },
-                    description: { zh: "¹§Ï²Äã³É¹¦ÖÆ×÷ÁË¾­µäµÄÔÁ²ËÇåÕôöÔÓã£¡ÕâµÀ²ËÓãÈâÏÊÄÛ£¬Ô­Ö­Ô­Î¶£¬Çåµ­¿É¿Ú£¬ÌåÏÖÁËÔÁ²Ë×·ÇóÊ³²Ä±¾Î¶µÄ¾«Ëè¡£", en: "Congratulations! You've successfully made classic Cantonese Steamed Sea Bass! This dish features tender fish with original flavor, light and delicious, reflecting Cantonese cuisine's pursuit of natural ingredient flavors." },
+                    title: { zh: "æ¸…è’¸é²ˆé±¼å®Œæˆï¼", en: "Steamed Sea Bass Complete!" },
+                    description: { zh: "æ­å–œä½ æˆåŠŸåˆ¶ä½œäº†ç»å…¸çš„ç²¤èœæ¸…è’¸é²ˆé±¼ï¼è¿™é“èœé±¼è‚‰é²œå«©ï¼ŒåŸæ±åŸå‘³ï¼Œæ¸…æ·¡å¯å£ï¼Œä½“ç°äº†ç²¤èœè¿½æ±‚é£Ÿææœ¬å‘³çš„ç²¾é«“ã€‚", en: "Congratulations! You've successfully made classic Cantonese Steamed Sea Bass! This dish features tender fish with original flavor, light and delicious, reflecting Cantonese cuisine's pursuit of natural ingredient flavors." },
                     image: "https://n.sinaimg.cn/sinakd20210924ac/400/w1200h800/20210924/1490-d2a9911976a4a5c2892e04d69df720a7.jpg",
                     icon: "fas fa-fish"
                 }
             },
             {
                 id: 3,
-                name: { zh: "Ïæ²Ë", en: "Hunan Cuisine" },
-                dish: { zh: "À±½·³´Èâ", en: "Stir-fried Pork with Chili" },
+                name: { zh: "æ¹˜èœ", en: "Hunan Cuisine" },
+                dish: { zh: "è¾£æ¤’ç‚’è‚‰", en: "Stir-fried Pork with Chili" },
                 icon: "fas fa-pepper-hot",
                 color: "#d90429",
                 ingredients: [
-                    { name: { zh: "Îå»¨Èâ", en: "Pork Belly" }, icon: "fas fa-bacon", collected: false },
-                    { name: { zh: "Çà½·", en: "Green Pepper" }, icon: "fas fa-pepper-hot", collected: false },
-                    { name: { zh: "ºì½·", en: "Red Pepper" }, icon: "fas fa-pepper-hot", collected: false },
-                    { name: { zh: "´óËâ", en: "Garlic" }, icon: "fas fa-leaf", collected: false },
-                    { name: { zh: "¶¹ôù", en: "Fermented Black Beans" }, icon: "fas fa-seedling", collected: false },
-                    { name: { zh: "½´ÓÍ", en: "Soy Sauce" }, icon: "fas fa-flask", collected: false },
-                    { name: { zh: "ÁÏ¾Æ", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
-                    { name: { zh: "ÑÎ", en: "Salt" }, icon: "fas fa-mortar-pestle", collected: false }
+                    { name: { zh: "äº”èŠ±è‚‰", en: "Pork Belly" }, icon: "fas fa-bacon", collected: false },
+                    { name: { zh: "é’æ¤’", en: "Green Pepper" }, icon: "fas fa-pepper-hot", collected: false },
+                    { name: { zh: "çº¢æ¤’", en: "Red Pepper" }, icon: "fas fa-pepper-hot", collected: false },
+                    { name: { zh: "å¤§è’œ", en: "Garlic" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "è±†è±‰", en: "Fermented Black Beans" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "é…±æ²¹", en: "Soy Sauce" }, icon: "fas fa-flask", collected: false },
+                    { name: { zh: "æ–™é…’", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
+                    { name: { zh: "ç›", en: "Salt" }, icon: "fas fa-mortar-pestle", collected: false }
                 ],
                 steps: [
                     {
-                        title: { zh: "×¼±¸Ê³²Ä", en: "Prepare Ingredients" },
-                        description: { zh: "½«Îå»¨ÈâÇĞ³É±¡Æ¬£¬Çàºì½·È¥×ÑÇĞ¿é£¬´óËâÇĞÆ¬¡£Îå»¨ÈâÓÃÉÙĞí½´ÓÍºÍÁÏ¾ÆëçÖÆ10·ÖÖÓ¡£", en: "Slice pork belly thinly, remove seeds from green and red peppers and cut into pieces, slice garlic. Marinate pork belly with a little soy sauce and cooking wine for 10 minutes." },
+                        title: { zh: "å‡†å¤‡é£Ÿæ", en: "Prepare Ingredients" },
+                        description: { zh: "å°†äº”èŠ±è‚‰åˆ‡æˆè–„ç‰‡ï¼Œé’çº¢æ¤’å»ç±½åˆ‡å—ï¼Œå¤§è’œåˆ‡ç‰‡ã€‚äº”èŠ±è‚‰ç”¨å°‘è®¸é…±æ²¹å’Œæ–™é…’è…Œåˆ¶10åˆ†é’Ÿã€‚", en: "Slice pork belly thinly, remove seeds from green and red peppers and cut into pieces, slice garlic. Marinate pork belly with a little soy sauce and cooking wine for 10 minutes." },
                         icon: "fas fa-utensils",
-                        interaction: { zh: "µã»÷ÇĞÅäÊ³²Ä", en: "Click to prepare ingredients" },
+                        interaction: { zh: "ç‚¹å‡»åˆ‡é…é£Ÿæ", en: "Click to prepare ingredients" },
                         sound: "chopSound"
                     },
                     {
-                        title: { zh: "ìÔ³´Îå»¨Èâ", en: "Stir-fry Pork Belly" },
-                        description: { zh: "ÈÈ¹øÉÙÓÍ£¬·ÅÈëÎå»¨ÈâÆ¬£¬ÖĞ»ğìÔ³´ÖÁ³öÓÍ£¬ÈâÆ¬Î¢¾í£¬±íÃæ½ğ»Æ¡£", en: "Heat pan with a little oil, add pork belly slices, stir-fry over medium heat until oil comes out, slices curl slightly and turn golden." },
+                        title: { zh: "ç…¸ç‚’äº”èŠ±è‚‰", en: "Stir-fry Pork Belly" },
+                        description: { zh: "çƒ­é”…å°‘æ²¹ï¼Œæ”¾å…¥äº”èŠ±è‚‰ç‰‡ï¼Œä¸­ç«ç…¸ç‚’è‡³å‡ºæ²¹ï¼Œè‚‰ç‰‡å¾®å·ï¼Œè¡¨é¢é‡‘é»„ã€‚", en: "Heat pan with a little oil, add pork belly slices, stir-fry over medium heat until oil comes out, slices curl slightly and turn golden." },
                         icon: "fas fa-fire",
-                        interaction: { zh: "µã»÷ìÔ³´ÈâÆ¬", en: "Click to stir-fry pork" },
+                        interaction: { zh: "ç‚¹å‡»ç…¸ç‚’è‚‰ç‰‡", en: "Click to stir-fry pork" },
                         sound: "frySound"
                     },
                     {
-                        title: { zh: "±¬Ïãµ÷ÁÏ", en: "Saut¨¦ Aromatics" },
-                        description: { zh: "½«ÈâÆ¬²¦µ½Ò»±ß£¬·ÅÈëËâÆ¬ºÍ¶¹ôù±¬Ïã£¬³´³öÏãÎ¶¡£", en: "Push pork to one side, add garlic slices and fermented black beans, saut¨¦ until fragrant." },
+                        title: { zh: "çˆ†é¦™è°ƒæ–™", en: "SautÃ© Aromatics" },
+                        description: { zh: "å°†è‚‰ç‰‡æ‹¨åˆ°ä¸€è¾¹ï¼Œæ”¾å…¥è’œç‰‡å’Œè±†è±‰çˆ†é¦™ï¼Œç‚’å‡ºé¦™å‘³ã€‚", en: "Push pork to one side, add garlic slices and fermented black beans, sautÃ© until fragrant." },
                         icon: "fas fa-leaf",
-                        interaction: { zh: "µã»÷±¬ÏãËâÆ¬", en: "Click to saut¨¦ garlic" },
+                        interaction: { zh: "ç‚¹å‡»çˆ†é¦™è’œç‰‡", en: "Click to sautÃ© garlic" },
                         sound: "sizzleSound"
                     },
                     {
-                        title: { zh: "¼ÓÈëÀ±½·", en: "Add Peppers" },
-                        description: { zh: "·ÅÈëÇàºì½·¿é£¬ÓëÈâÆ¬Ò»Æğ·­³´£¬³´ÖÁÀ±½·¶ÏÉú£¬±íÃæÆğ»¢Æ¤¡£", en: "Add green and red pepper pieces, stir-fry with pork until peppers are cooked but still crisp, with slight blistering on surface." },
+                        title: { zh: "åŠ å…¥è¾£æ¤’", en: "Add Peppers" },
+                        description: { zh: "æ”¾å…¥é’çº¢æ¤’å—ï¼Œä¸è‚‰ç‰‡ä¸€èµ·ç¿»ç‚’ï¼Œç‚’è‡³è¾£æ¤’æ–­ç”Ÿï¼Œè¡¨é¢èµ·è™çš®ã€‚", en: "Add green and red pepper pieces, stir-fry with pork until peppers are cooked but still crisp, with slight blistering on surface." },
                         icon: "fas fa-random",
-                        interaction: { zh: "µã»÷·­³´À±½·", en: "Click to stir-fry peppers" },
+                        interaction: { zh: "ç‚¹å‡»ç¿»ç‚’è¾£æ¤’", en: "Click to stir-fry peppers" },
                         sound: "stirSound"
                     },
                     {
-                        title: { zh: "µ÷Î¶³ö¹ø", en: "Season and Serve" },
-                        description: { zh: "¼ÓÈëÊÊÁ¿½´ÓÍ¡¢ÑÎµ÷Î¶£¬¿ìËÙ·­³´¾ùÔÈ¼´¿É³ö¹ø¡£À±½·³´ÈâÍê³É£¡", en: "Add appropriate amount of soy sauce and salt, stir-fry quickly and evenly, then serve. Stir-fried Pork with Chili is ready!" },
+                        title: { zh: "è°ƒå‘³å‡ºé”…", en: "Season and Serve" },
+                        description: { zh: "åŠ å…¥é€‚é‡é…±æ²¹ã€ç›è°ƒå‘³ï¼Œå¿«é€Ÿç¿»ç‚’å‡åŒ€å³å¯å‡ºé”…ã€‚è¾£æ¤’ç‚’è‚‰å®Œæˆï¼", en: "Add appropriate amount of soy sauce and salt, stir-fry quickly and evenly, then serve. Stir-fried Pork with Chili is ready!" },
                         icon: "fas fa-mortar-pestle",
-                        interaction: { zh: "µã»÷µ÷Î¶³ö¹ø", en: "Click to season and serve" },
+                        interaction: { zh: "ç‚¹å‡»è°ƒå‘³å‡ºé”…", en: "Click to season and serve" },
                         sound: "plateSound"
                     }
                 ],
                 result: {
-                    title: { zh: "À±½·³´ÈâÍê³É£¡", en: "Stir-fried Pork with Chili Complete!" },
-                    description: { zh: "¹§Ï²Äã³É¹¦ÖÆ×÷ÁË¾­µäµÄÏæ²ËÀ±½·³´Èâ£¡ÕâµÀ²ËÏãÀ±¿É¿Ú£¬·Ê¶ø²»Äå£¬ÊÇºşÄÏ¼Ò³£²ËµÄ´ú±í×÷£¬·Ç³£ÏÂ·¹¡£", en: "Congratulations! You've successfully made classic Hunan Stir-fried Pork with Chili! This dish is spicy and delicious, fatty but not greasy, a representative Hunan home-style dish that goes perfectly with rice." },
+                    title: { zh: "è¾£æ¤’ç‚’è‚‰å®Œæˆï¼", en: "Stir-fried Pork with Chili Complete!" },
+                    description: { zh: "æ­å–œä½ æˆåŠŸåˆ¶ä½œäº†ç»å…¸çš„æ¹˜èœè¾£æ¤’ç‚’è‚‰ï¼è¿™é“èœé¦™è¾£å¯å£ï¼Œè‚¥è€Œä¸è…»ï¼Œæ˜¯æ¹–å—å®¶å¸¸èœçš„ä»£è¡¨ä½œï¼Œéå¸¸ä¸‹é¥­ã€‚", en: "Congratulations! You've successfully made classic Hunan Stir-fried Pork with Chili! This dish is spicy and delicious, fatty but not greasy, a representative Hunan home-style dish that goes perfectly with rice." },
                     image: "https://th.bing.com/th/id/R.14bcaba68dbef2b7e6ae84f781b71948?rik=RWF40exlOXodcA&riu=http%3a%2f%2fn.sinaimg.cn%2ftranslate%2f20171107%2f_zqr-fynmzrs7765920.jpg&ehk=vl%2bdeGrpLyXc7Eyc7ZDj9xQZ%2fm7JPIBWxzZIPiJWVOE%3d&risl=&pid=ImgRaw&r=0",
                     icon: "fas fa-pepper-hot"
                 }
             },
             {
                 id: 4,
-                name: { zh: "Â³²Ë", en: "Shandong Cuisine" },
-                dish: { zh: "´ĞÉÕº£²Î", en: "Braised Sea Cucumber with Scallions" },
+                name: { zh: "é²èœ", en: "Shandong Cuisine" },
+                dish: { zh: "è‘±çƒ§æµ·å‚", en: "Braised Sea Cucumber with Scallions" },
                 icon: "fas fa-water",
                 color: "#006d77",
                 ingredients: [
-                    { name: { zh: "º£²Î", en: "Sea Cucumber" }, icon: "fas fa-water", collected: false },
-                    { name: { zh: "´ó´Ğ", en: "Scallions" }, icon: "fas fa-leaf", collected: false },
-                    { name: { zh: "Éú½ª", en: "Ginger" }, icon: "fas fa-leaf", collected: false },
-                    { name: { zh: "¸ßÌÀ", en: "Broth" }, icon: "fas fa-flask", collected: false },
-                    { name: { zh: "½´ÓÍ", en: "Soy Sauce" }, icon: "fas fa-flask", collected: false },
-                    { name: { zh: "ÁÏ¾Æ", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
-                    { name: { zh: "ÌÇ", en: "Sugar" }, icon: "fas fa-cube", collected: false },
-                    { name: { zh: "µí·Û", en: "Starch" }, icon: "fas fa-vial", collected: false }
+                    { name: { zh: "æµ·å‚", en: "Sea Cucumber" }, icon: "fas fa-water", collected: false },
+                    { name: { zh: "å¤§è‘±", en: "Scallions" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "ç”Ÿå§œ", en: "Ginger" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "é«˜æ±¤", en: "Broth" }, icon: "fas fa-flask", collected: false },
+                    { name: { zh: "é…±æ²¹", en: "Soy Sauce" }, icon: "fas fa-flask", collected: false },
+                    { name: { zh: "æ–™é…’", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
+                    { name: { zh: "ç³–", en: "Sugar" }, icon: "fas fa-cube", collected: false },
+                    { name: { zh: "æ·€ç²‰", en: "Starch" }, icon: "fas fa-vial", collected: false }
                 ],
                 steps: [
                     {
-                        title: { zh: "×¼±¸º£²Î", en: "Prepare Sea Cucumber" },
-                        description: { zh: "½«Åİ·¢ºÃµÄº£²ÎÇåÏ´¸É¾»£¬ÇĞ³ÉÌõ×´¡£´ó´ĞÇĞ¶Î£¬Éú½ªÇĞÆ¬¡£", en: "Clean soaked sea cucumber, cut into strips. Cut scallions into sections, slice ginger." },
+                        title: { zh: "å‡†å¤‡æµ·å‚", en: "Prepare Sea Cucumber" },
+                        description: { zh: "å°†æ³¡å‘å¥½çš„æµ·å‚æ¸…æ´—å¹²å‡€ï¼Œåˆ‡æˆæ¡çŠ¶ã€‚å¤§è‘±åˆ‡æ®µï¼Œç”Ÿå§œåˆ‡ç‰‡ã€‚", en: "Clean soaked sea cucumber, cut into strips. Cut scallions into sections, slice ginger." },
                         icon: "fas fa-cut",
-                        interaction: { zh: "µã»÷´¦Àíº£²Î", en: "Click to prepare sea cucumber" },
+                        interaction: { zh: "ç‚¹å‡»å¤„ç†æµ·å‚", en: "Click to prepare sea cucumber" },
                         sound: "knifeSound"
                     },
                     {
-                        title: { zh: "ìÔ³´´ó´Ğ", en: "Stir-fry Scallions" },
-                        description: { zh: "¹øÖĞ·ÅÓÍ£¬·ÅÈë´ó´Ğ¶Î£¬Ğ¡»ğÂıÂıìÔ³´ÖÁ½ğ»ÆÉ«£¬ÀÌ³ö´Ğ¶Î±¸ÓÃ£¬Áô´ĞÓÍÔÚ¹øÖĞ¡£", en: "Add oil to pan, add scallion sections, stir-fry over low heat until golden brown, remove scallions and set aside, leave scallion oil in pan." },
+                        title: { zh: "ç…¸ç‚’å¤§è‘±", en: "Stir-fry Scallions" },
+                        description: { zh: "é”…ä¸­æ”¾æ²¹ï¼Œæ”¾å…¥å¤§è‘±æ®µï¼Œå°ç«æ…¢æ…¢ç…¸ç‚’è‡³é‡‘é»„è‰²ï¼Œæå‡ºè‘±æ®µå¤‡ç”¨ï¼Œç•™è‘±æ²¹åœ¨é”…ä¸­ã€‚", en: "Add oil to pan, add scallion sections, stir-fry over low heat until golden brown, remove scallions and set aside, leave scallion oil in pan." },
                         icon: "fas fa-fire",
-                        interaction: { zh: "µã»÷ìÔ³´´ó´Ğ", en: "Click to stir-fry scallions" },
+                        interaction: { zh: "ç‚¹å‡»ç…¸ç‚’å¤§è‘±", en: "Click to stir-fry scallions" },
                         sound: "sizzleSound"
                     },
                     {
-                        title: { zh: "ÉÕÖÆº£²Î", en: "Braise Sea Cucumber" },
-                        description: { zh: "ÔÚ´ĞÓÍÖĞ¼ÓÈë½ªÆ¬±¬Ïã£¬·ÅÈëº£²ÎÌõ£¬¼ÓÈëÁÏ¾Æ¡¢½´ÓÍ¡¢ÌÇºÍ¸ßÌÀ£¬ÉÕ¿ªºó×ªĞ¡»ğÂıÉÕ10·ÖÖÓ¡£", en: "Add ginger slices to scallion oil and saut¨¦ until fragrant, add sea cucumber strips, add cooking wine, soy sauce, sugar and broth, bring to boil then reduce heat and simmer for 10 minutes." },
+                        title: { zh: "çƒ§åˆ¶æµ·å‚", en: "Braise Sea Cucumber" },
+                        description: { zh: "åœ¨è‘±æ²¹ä¸­åŠ å…¥å§œç‰‡çˆ†é¦™ï¼Œæ”¾å…¥æµ·å‚æ¡ï¼ŒåŠ å…¥æ–™é…’ã€é…±æ²¹ã€ç³–å’Œé«˜æ±¤ï¼Œçƒ§å¼€åè½¬å°ç«æ…¢çƒ§10åˆ†é’Ÿã€‚", en: "Add ginger slices to scallion oil and sautÃ© until fragrant, add sea cucumber strips, add cooking wine, soy sauce, sugar and broth, bring to boil then reduce heat and simmer for 10 minutes." },
                         icon: "fas fa-temperature-high",
-                        interaction: { zh: "µã»÷ÉÕÖÆº£²Î", en: "Click to braise sea cucumber" },
+                        interaction: { zh: "ç‚¹å‡»çƒ§åˆ¶æµ·å‚", en: "Click to braise sea cucumber" },
                         sound: "stirSound"
                     },
                     {
-                        title: { zh: "¼ÓÈë´ó´Ğ", en: "Add Scallions" },
-                        description: { zh: "½«Ö®Ç°ìÔ³´ºÃµÄ´ó´Ğ¶Î·ÅÈë¹øÖĞ£¬Óëº£²ÎÒ»ÆğÔÙÉÕ5·ÖÖÓ£¬ÈÃ´ĞÏãÎ¶³ä·ÖÈÚÈë¡£", en: "Add previously stir-fried scallion sections to the pan, cook with sea cucumber for another 5 minutes to fully integrate scallion flavor." },
+                        title: { zh: "åŠ å…¥å¤§è‘±", en: "Add Scallions" },
+                        description: { zh: "å°†ä¹‹å‰ç…¸ç‚’å¥½çš„å¤§è‘±æ®µæ”¾å…¥é”…ä¸­ï¼Œä¸æµ·å‚ä¸€èµ·å†çƒ§5åˆ†é’Ÿï¼Œè®©è‘±é¦™å‘³å……åˆ†èå…¥ã€‚", en: "Add previously stir-fried scallion sections to the pan, cook with sea cucumber for another 5 minutes to fully integrate scallion flavor." },
                         icon: "fas fa-plus-circle",
-                        interaction: { zh: "µã»÷¼ÓÈë´ó´Ğ", en: "Click to add scallions" },
+                        interaction: { zh: "ç‚¹å‡»åŠ å…¥å¤§è‘±", en: "Click to add scallions" },
                         sound: "pourSound"
                     },
                     {
-                        title: { zh: "¹´ÜÍ³ö¹ø", en: "Thicken Sauce and Serve" },
-                        description: { zh: "ÓÃµí·ÛË®¹´ÜÍ£¬Ê¹ÌÀÖ­Å¨³í£¬°ü¹üÔÚº£²ÎºÍ´ó´ĞÉÏ¡£´ĞÉÕº£²ÎÍê³É£¡", en: "Thicken sauce with starch water until thick and coating sea cucumber and scallions. Braised Sea Cucumber with Scallions is ready!" },
+                        title: { zh: "å‹¾èŠ¡å‡ºé”…", en: "Thicken Sauce and Serve" },
+                        description: { zh: "ç”¨æ·€ç²‰æ°´å‹¾èŠ¡ï¼Œä½¿æ±¤æ±æµ“ç¨ ï¼ŒåŒ…è£¹åœ¨æµ·å‚å’Œå¤§è‘±ä¸Šã€‚è‘±çƒ§æµ·å‚å®Œæˆï¼", en: "Thicken sauce with starch water until thick and coating sea cucumber and scallions. Braised Sea Cucumber with Scallions is ready!" },
                         icon: "fas fa-vial",
-                        interaction: { zh: "µã»÷¹´ÜÍ³ö¹ø", en: "Click to thicken sauce and serve" },
+                        interaction: { zh: "ç‚¹å‡»å‹¾èŠ¡å‡ºé”…", en: "Click to thicken sauce and serve" },
                         sound: "plateSound"
                     }
                 ],
                 result: {
-                    title: { zh: "´ĞÉÕº£²ÎÍê³É£¡", en: "Braised Sea Cucumber with Scallions Complete!" },
-                    description: { zh: "¹§Ï²Äã³É¹¦ÖÆ×÷ÁË¾­µäµÄÂ³²Ë´ĞÉÕº£²Î£¡ÕâµÀ²Ëº£²ÎÈíÅ´£¬´ĞÏãÅ¨Óô£¬ÌÀÖ­´¼ºñ£¬ÊÇÉ½¶«µØÇøµÄ´«Í³Ãû²Ë¡£", en: "Congratulations! You've successfully made classic Shandong Braised Sea Cucumber with Scallions! This dish features soft sea cucumber, rich scallion flavor, and thick delicious sauce, a traditional famous dish from Shandong region." },
+                    title: { zh: "è‘±çƒ§æµ·å‚å®Œæˆï¼", en: "Braised Sea Cucumber with Scallions Complete!" },
+                    description: { zh: "æ­å–œä½ æˆåŠŸåˆ¶ä½œäº†ç»å…¸çš„é²èœè‘±çƒ§æµ·å‚ï¼è¿™é“èœæµ·å‚è½¯ç³¯ï¼Œè‘±é¦™æµ“éƒï¼Œæ±¤æ±é†‡åšï¼Œæ˜¯å±±ä¸œåœ°åŒºçš„ä¼ ç»Ÿåèœã€‚", en: "Congratulations! You've successfully made classic Shandong Braised Sea Cucumber with Scallions! This dish features soft sea cucumber, rich scallion flavor, and thick delicious sauce, a traditional famous dish from Shandong region." },
                     image: "https://th.bing.com/th/id/R.8e98925619c3d63c408ed0673a6ec937?rik=3IJfexlZAXqA7g&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20180201%2f99604beac57744ec84576c615c6bd4fd.jpeg&ehk=%2foSoZUNMohXnCkFJ8vvypNl9qLnOJaUPVlSpYuffC2Q%3d&risl=&pid=ImgRaw&r=0",
                     icon: "fas fa-water"
                 }
             },
             {
                 id: 5,
-                name: { zh: "ËÕ²Ë", en: "Jiangsu Cuisine" },
-                dish: { zh: "ËÉÊó¹ğÓã", en: "Squirrel-shaped Mandarin Fish" },
+                name: { zh: "è‹èœ", en: "Jiangsu Cuisine" },
+                dish: { zh: "æ¾é¼ æ¡‚é±¼", en: "Squirrel-shaped Mandarin Fish" },
                 icon: "fas fa-fish",
                 color: "#9d4edd",
                 ingredients: [
-                    { name: { zh: "¹ğÓã", en: "Mandarin Fish" }, icon: "fas fa-fish", collected: false },
-                    { name: { zh: "ËÉ×Ó", en: "Pine Nuts" }, icon: "fas fa-seedling", collected: false },
-                    { name: { zh: "Çà¶¹", en: "Green Peas" }, icon: "fas fa-seedling", collected: false },
-                    { name: { zh: "·¬ÇÑ½´", en: "Ketchup" }, icon: "fas fa-flask", collected: false },
-                    { name: { zh: "ÌÇ", en: "Sugar" }, icon: "fas fa-cube", collected: false },
-                    { name: { zh: "´×", en: "Vinegar" }, icon: "fas fa-tint", collected: false },
-                    { name: { zh: "µí·Û", en: "Starch" }, icon: "fas fa-vial", collected: false },
-                    { name: { zh: "¼¦µ°", en: "Egg" }, icon: "fas fa-egg", collected: false }
+                    { name: { zh: "æ¡‚é±¼", en: "Mandarin Fish" }, icon: "fas fa-fish", collected: false },
+                    { name: { zh: "æ¾å­", en: "Pine Nuts" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "é’è±†", en: "Green Peas" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "ç•ªèŒ„é…±", en: "Ketchup" }, icon: "fas fa-flask", collected: false },
+                    { name: { zh: "ç³–", en: "Sugar" }, icon: "fas fa-cube", collected: false },
+                    { name: { zh: "é†‹", en: "Vinegar" }, icon: "fas fa-tint", collected: false },
+                    { name: { zh: "æ·€ç²‰", en: "Starch" }, icon: "fas fa-vial", collected: false },
+                    { name: { zh: "é¸¡è›‹", en: "Egg" }, icon: "fas fa-egg", collected: false }
                 ],
                 steps: [
                     {
-                        title: { zh: "´¦Àí¹ğÓã", en: "Prepare the Fish" },
-                        description: { zh: "½«¹ğÓãÈ¥ÁÛ¡¢È¥ÄÚÔà£¬Ï´¾»ºóÇĞÏÂÓãÍ·¡£´ÓÓã±³´¦½«ÓãÆÊ³ÉÁ½°ë£¬È¥µôÓã¹Ç£¬ÓãÈâÇĞ»¨µ¶¡£", en: "Scale and clean mandarin fish, cut off head. Split fish from back into two halves, remove bone, make crosshatch cuts on fish meat." },
+                        title: { zh: "å¤„ç†æ¡‚é±¼", en: "Prepare the Fish" },
+                        description: { zh: "å°†æ¡‚é±¼å»é³ã€å»å†…è„ï¼Œæ´—å‡€ååˆ‡ä¸‹é±¼å¤´ã€‚ä»é±¼èƒŒå¤„å°†é±¼å‰–æˆä¸¤åŠï¼Œå»æ‰é±¼éª¨ï¼Œé±¼è‚‰åˆ‡èŠ±åˆ€ã€‚", en: "Scale and clean mandarin fish, cut off head. Split fish from back into two halves, remove bone, make crosshatch cuts on fish meat." },
                         icon: "fas fa-cut",
-                        interaction: { zh: "µã»÷´¦Àí¹ğÓã", en: "Click to prepare fish" },
+                        interaction: { zh: "ç‚¹å‡»å¤„ç†æ¡‚é±¼", en: "Click to prepare fish" },
                         sound: "knifeSound"
                     },
                     {
-                        title: { zh: "ëçÖÆÓãÈâ", en: "Marinate Fish" },
-                        description: { zh: "ÓÃÁÏ¾Æ¡¢ÑÎºÍ½ªÆ¬ëçÖÆÓãÈâ10·ÖÖÓ£¬È»ºó¹üÉÏµí·ÛºÍµ°Òº¡£", en: "Marinate fish with cooking wine, salt and ginger slices for 10 minutes, then coat with starch and egg mixture." },
+                        title: { zh: "è…Œåˆ¶é±¼è‚‰", en: "Marinate Fish" },
+                        description: { zh: "ç”¨æ–™é…’ã€ç›å’Œå§œç‰‡è…Œåˆ¶é±¼è‚‰10åˆ†é’Ÿï¼Œç„¶åè£¹ä¸Šæ·€ç²‰å’Œè›‹æ¶²ã€‚", en: "Marinate fish with cooking wine, salt and ginger slices for 10 minutes, then coat with starch and egg mixture." },
                         icon: "fas fa-egg",
-                        interaction: { zh: "µã»÷ëçÖÆÓãÈâ", en: "Click to marinate fish" },
+                        interaction: { zh: "ç‚¹å‡»è…Œåˆ¶é±¼è‚‰", en: "Click to marinate fish" },
                         sound: "marinateSound"
                     },
                     {
-                        title: { zh: "Õ¨ÖÆÓãÈâ", en: "Deep-fry Fish" },
-                        description: { zh: "ÓÍÎÂÁù³ÉÈÈÊ±£¬½«ÓãÈâÏÂ¹øÕ¨ÖÁ¶¨ĞÍ£¬ÀÌ³ö¡£ÓÍÎÂÉı¸ßºó¸´Õ¨ÖÁ½ğ»ÆËÖ´à£¬ÓãÍ·Ò²Õ¨ÖÁ½ğ»Æ¡£", en: "When oil is 60% hot, deep-fry fish until set, remove. When oil temperature rises, fry again until golden and crispy, also fry fish head until golden." },
+                        title: { zh: "ç‚¸åˆ¶é±¼è‚‰", en: "Deep-fry Fish" },
+                        description: { zh: "æ²¹æ¸©å…­æˆçƒ­æ—¶ï¼Œå°†é±¼è‚‰ä¸‹é”…ç‚¸è‡³å®šå‹ï¼Œæå‡ºã€‚æ²¹æ¸©å‡é«˜åå¤ç‚¸è‡³é‡‘é»„é…¥è„†ï¼Œé±¼å¤´ä¹Ÿç‚¸è‡³é‡‘é»„ã€‚", en: "When oil is 60% hot, deep-fry fish until set, remove. When oil temperature rises, fry again until golden and crispy, also fry fish head until golden." },
                         icon: "fas fa-fire",
-                        interaction: { zh: "µã»÷Õ¨ÖÆÓãÈâ", en: "Click to deep-fry fish" },
+                        interaction: { zh: "ç‚¹å‡»ç‚¸åˆ¶é±¼è‚‰", en: "Click to deep-fry fish" },
                         sound: "frySound"
                     },
                     {
-                        title: { zh: "µ÷ÖÆ½´Ö­", en: "Prepare Sauce" },
-                        description: { zh: "¹øÖĞÁôÉÙĞíÓÍ£¬¼ÓÈë·¬ÇÑ½´¡¢ÌÇ¡¢´×¡¢ÑÎºÍÊÊÁ¿Ë®£¬ÉÕ¿ªºóÓÃµí·ÛË®¹´ÜÍ¡£", en: "Leave a little oil in pan, add ketchup, sugar, vinegar, salt and appropriate amount of water, bring to boil then thicken with starch water." },
+                        title: { zh: "è°ƒåˆ¶é…±æ±", en: "Prepare Sauce" },
+                        description: { zh: "é”…ä¸­ç•™å°‘è®¸æ²¹ï¼ŒåŠ å…¥ç•ªèŒ„é…±ã€ç³–ã€é†‹ã€ç›å’Œé€‚é‡æ°´ï¼Œçƒ§å¼€åç”¨æ·€ç²‰æ°´å‹¾èŠ¡ã€‚", en: "Leave a little oil in pan, add ketchup, sugar, vinegar, salt and appropriate amount of water, bring to boil then thicken with starch water." },
                         icon: "fas fa-flask",
-                        interaction: { zh: "µã»÷µ÷ÖÆ½´Ö­", en: "Click to prepare sauce" },
+                        interaction: { zh: "ç‚¹å‡»è°ƒåˆ¶é…±æ±", en: "Click to prepare sauce" },
                         sound: "stirSound"
                     },
                     {
-                        title: { zh: "°ÚÅÌ½½Ö­", en: "Plate and Pour Sauce" },
-                        description: { zh: "½«Õ¨ºÃµÄÓãÈâºÍÓãÍ·°Ú³ÉËÉÊóĞÎ×´£¬ÁÜÉÏ½´Ö­£¬ÈöÉÏËÉ×ÓºÍÇà¶¹¡£ËÉÊó¹ğÓãÍê³É£¡", en: "Arrange fried fish and head into squirrel shape, pour sauce over, sprinkle with pine nuts and green peas. Squirrel-shaped Mandarin Fish is ready!" },
+                        title: { zh: "æ‘†ç›˜æµ‡æ±", en: "Plate and Pour Sauce" },
+                        description: { zh: "å°†ç‚¸å¥½çš„é±¼è‚‰å’Œé±¼å¤´æ‘†æˆæ¾é¼ å½¢çŠ¶ï¼Œæ·‹ä¸Šé…±æ±ï¼Œæ’’ä¸Šæ¾å­å’Œé’è±†ã€‚æ¾é¼ æ¡‚é±¼å®Œæˆï¼", en: "Arrange fried fish and head into squirrel shape, pour sauce over, sprinkle with pine nuts and green peas. Squirrel-shaped Mandarin Fish is ready!" },
                         icon: "fas fa-utensil-spoon",
-                        interaction: { zh: "µã»÷°ÚÅÌ½½Ö­", en: "Click to plate and pour sauce" },
+                        interaction: { zh: "ç‚¹å‡»æ‘†ç›˜æµ‡æ±", en: "Click to plate and pour sauce" },
                         sound: "pourSound"
                     }
                 ],
                 result: {
-                    title: { zh: "ËÉÊó¹ğÓãÍê³É£¡", en: "Squirrel-shaped Mandarin Fish Complete!" },
-                    description: { zh: "¹§Ï²Äã³É¹¦ÖÆ×÷ÁË¾­µäµÄËÕ²ËËÉÊó¹ğÓã£¡ÕâµÀ²ËĞÎËÆËÉÊó£¬ÍâËÖÀïÄÛ£¬ËáÌğ¿É¿Ú£¬ÊÇ½­ËÕµØÇøµÄ´«Í³Ãû²Ë£¬³£ÓÃÓÚÑçÏ¯¡£", en: "Congratulations! You've successfully made classic Jiangsu Squirrel-shaped Mandarin Fish! This dish resembles a squirrel, crispy outside and tender inside, sweet and sour flavor, a traditional famous dish from Jiangsu region often served at banquets." },
+                    title: { zh: "æ¾é¼ æ¡‚é±¼å®Œæˆï¼", en: "Squirrel-shaped Mandarin Fish Complete!" },
+                    description: { zh: "æ­å–œä½ æˆåŠŸåˆ¶ä½œäº†ç»å…¸çš„è‹èœæ¾é¼ æ¡‚é±¼ï¼è¿™é“èœå½¢ä¼¼æ¾é¼ ï¼Œå¤–é…¥é‡Œå«©ï¼Œé…¸ç”œå¯å£ï¼Œæ˜¯æ±Ÿè‹åœ°åŒºçš„ä¼ ç»Ÿåèœï¼Œå¸¸ç”¨äºå®´å¸­ã€‚", en: "Congratulations! You've successfully made classic Jiangsu Squirrel-shaped Mandarin Fish! This dish resembles a squirrel, crispy outside and tender inside, sweet and sour flavor, a traditional famous dish from Jiangsu region often served at banquets." },
                     image: "https://i01piccdn.sogoucdn.com/ce0d1df54f6005e3",
                     icon: "fas fa-fish"
                 }
             },
             {
                 id: 6,
-                name: { zh: "Õã²Ë", en: "Zhejiang Cuisine" },
-                dish: { zh: "Áú¾®ÏºÈÊ", en: "Longjing Shrimp" },
+                name: { zh: "æµ™èœ", en: "Zhejiang Cuisine" },
+                dish: { zh: "é¾™äº•è™¾ä»", en: "Longjing Shrimp" },
                 icon: "fas fa-leaf",
                 color: "#2a9d8f",
                 ingredients: [
-                    { name: { zh: "ÏºÈÊ", en: "Shrimp" }, icon: "fas fa-shrimp", collected: false },
-                    { name: { zh: "Áú¾®²èÒ¶", en: "Longjing Tea Leaves" }, icon: "fas fa-leaf", collected: false },
-                    { name: { zh: "µ°Çå", en: "Egg White" }, icon: "fas fa-egg", collected: false },
-                    { name: { zh: "µí·Û", en: "Starch" }, icon: "fas fa-vial", collected: false },
-                    { name: { zh: "ÁÏ¾Æ", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
-                    { name: { zh: "ÑÎ", en: "Salt" }, icon: "fas fa-mortar-pestle", collected: false },
-                    { name: { zh: "Ê³ÓÃÓÍ", en: "Cooking Oil" }, icon: "fas fa-oil-can", collected: false }
+                    { name: { zh: "è™¾ä»", en: "Shrimp" }, icon: "fas fa-shrimp", collected: false },
+                    { name: { zh: "é¾™äº•èŒ¶å¶", en: "Longjing Tea Leaves" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "è›‹æ¸…", en: "Egg White" }, icon: "fas fa-egg", collected: false },
+                    { name: { zh: "æ·€ç²‰", en: "Starch" }, icon: "fas fa-vial", collected: false },
+                    { name: { zh: "æ–™é…’", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
+                    { name: { zh: "ç›", en: "Salt" }, icon: "fas fa-mortar-pestle", collected: false },
+                    { name: { zh: "é£Ÿç”¨æ²¹", en: "Cooking Oil" }, icon: "fas fa-oil-can", collected: false }
                 ],
                 steps: [
                     {
-                        title: { zh: "×¼±¸ÏºÈÊ", en: "Prepare Shrimp" },
-                        description: { zh: "ÏºÈÊÈ¥ÏºÏß£¬Ï´¾»ºóÓÃ³ø·¿Ö½Îü¸ÉË®·Ö¡£ÓÃµ°Çå¡¢µí·Û¡¢ÁÏ¾ÆºÍÑÎëçÖÆ15·ÖÖÓ¡£", en: "Remove veins from shrimp, wash and pat dry with paper towel. Marinate with egg white, starch, cooking wine and salt for 15 minutes." },
+                        title: { zh: "å‡†å¤‡è™¾ä»", en: "Prepare Shrimp" },
+                        description: { zh: "è™¾ä»å»è™¾çº¿ï¼Œæ´—å‡€åç”¨å¨æˆ¿çº¸å¸å¹²æ°´åˆ†ã€‚ç”¨è›‹æ¸…ã€æ·€ç²‰ã€æ–™é…’å’Œç›è…Œåˆ¶15åˆ†é’Ÿã€‚", en: "Remove veins from shrimp, wash and pat dry with paper towel. Marinate with egg white, starch, cooking wine and salt for 15 minutes." },
                         icon: "fas fa-cut",
-                        interaction: { zh: "µã»÷´¦ÀíÏºÈÊ", en: "Click to prepare shrimp" },
+                        interaction: { zh: "ç‚¹å‡»å¤„ç†è™¾ä»", en: "Click to prepare shrimp" },
                         sound: "knifeSound"
                     },
                     {
-                        title: { zh: "ÅİÁú¾®²è", en: "Brew Longjing Tea" },
-                        description: { zh: "È¡ÊÊÁ¿Áú¾®²èÒ¶£¬ÓÃ80¡æÈÈË®³åÅİ£¬È¡²èÌÀºÍ²¿·Ö²èÒ¶±¸ÓÃ¡£", en: "Take appropriate amount of Longjing tea leaves, brew with 80¡æ hot water, take tea liquid and some tea leaves for later use." },
+                        title: { zh: "æ³¡é¾™äº•èŒ¶", en: "Brew Longjing Tea" },
+                        description: { zh: "å–é€‚é‡é¾™äº•èŒ¶å¶ï¼Œç”¨80â„ƒçƒ­æ°´å†²æ³¡ï¼Œå–èŒ¶æ±¤å’Œéƒ¨åˆ†èŒ¶å¶å¤‡ç”¨ã€‚", en: "Take appropriate amount of Longjing tea leaves, brew with 80â„ƒ hot water, take tea liquid and some tea leaves for later use." },
                         icon: "fas fa-mug-hot",
-                        interaction: { zh: "µã»÷ÅİÁú¾®²è", en: "Click to brew tea" },
+                        interaction: { zh: "ç‚¹å‡»æ³¡é¾™äº•èŒ¶", en: "Click to brew tea" },
                         sound: "pourSound"
                     },
                     {
-                        title: { zh: "»¬³´ÏºÈÊ", en: "Stir-fry Shrimp" },
-                        description: { zh: "ÈÈ¹øÁ¹ÓÍ£¬ÓÍÎÂËÄ³ÉÈÈÊ±·ÅÈëÏºÈÊ»¬³´ÖÁ±äÉ«£¬Ê¢³ö±¸ÓÃ¡£", en: "Heat pan with oil, when oil is 40% hot, add shrimp and stir-fry until color changes, remove and set aside." },
+                        title: { zh: "æ»‘ç‚’è™¾ä»", en: "Stir-fry Shrimp" },
+                        description: { zh: "çƒ­é”…å‡‰æ²¹ï¼Œæ²¹æ¸©å››æˆçƒ­æ—¶æ”¾å…¥è™¾ä»æ»‘ç‚’è‡³å˜è‰²ï¼Œç››å‡ºå¤‡ç”¨ã€‚", en: "Heat pan with oil, when oil is 40% hot, add shrimp and stir-fry until color changes, remove and set aside." },
                         icon: "fas fa-fire",
-                        interaction: { zh: "µã»÷»¬³´ÏºÈÊ", en: "Click to stir-fry shrimp" },
+                        interaction: { zh: "ç‚¹å‡»æ»‘ç‚’è™¾ä»", en: "Click to stir-fry shrimp" },
                         sound: "sizzleSound"
                     },
                     {
-                        title: { zh: "¼ÓÈë²èÌÀ", en: "Add Tea Liquid" },
-                        description: { zh: "¹øÖĞÁôÉÙĞíÓÍ£¬·ÅÈëÁú¾®²èÒ¶³´Ïã£¬È»ºóµ¹Èë²èÌÀÉÕ¿ª¡£", en: "Leave a little oil in pan, add Longjing tea leaves and stir-fry until fragrant, then pour in tea liquid and bring to boil." },
+                        title: { zh: "åŠ å…¥èŒ¶æ±¤", en: "Add Tea Liquid" },
+                        description: { zh: "é”…ä¸­ç•™å°‘è®¸æ²¹ï¼Œæ”¾å…¥é¾™äº•èŒ¶å¶ç‚’é¦™ï¼Œç„¶åå€’å…¥èŒ¶æ±¤çƒ§å¼€ã€‚", en: "Leave a little oil in pan, add Longjing tea leaves and stir-fry until fragrant, then pour in tea liquid and bring to boil." },
                         icon: "fas fa-plus-circle",
-                        interaction: { zh: "µã»÷¼ÓÈë²èÌÀ", en: "Click to add tea liquid" },
+                        interaction: { zh: "ç‚¹å‡»åŠ å…¥èŒ¶æ±¤", en: "Click to add tea liquid" },
                         sound: "pourSound"
                     },
                     {
-                        title: { zh: "»ìºÏ·­³´", en: "Combine and Stir-fry" },
-                        description: { zh: "½«³´ºÃµÄÏºÈÊ·ÅÈë¹øÖĞ£¬¿ìËÙ·­³´¾ùÔÈ£¬ÈÃÏºÈÊÎüÊÕ²èÏã¡£Áú¾®ÏºÈÊÍê³É£¡", en: "Add stir-fried shrimp to pan, quickly stir-fry evenly to let shrimp absorb tea aroma. Longjing Shrimp is ready!" },
+                        title: { zh: "æ··åˆç¿»ç‚’", en: "Combine and Stir-fry" },
+                        description: { zh: "å°†ç‚’å¥½çš„è™¾ä»æ”¾å…¥é”…ä¸­ï¼Œå¿«é€Ÿç¿»ç‚’å‡åŒ€ï¼Œè®©è™¾ä»å¸æ”¶èŒ¶é¦™ã€‚é¾™äº•è™¾ä»å®Œæˆï¼", en: "Add stir-fried shrimp to pan, quickly stir-fry evenly to let shrimp absorb tea aroma. Longjing Shrimp is ready!" },
                         icon: "fas fa-random",
-                        interaction: { zh: "µã»÷»ìºÏ·­³´", en: "Click to combine and stir-fry" },
+                        interaction: { zh: "ç‚¹å‡»æ··åˆç¿»ç‚’", en: "Click to combine and stir-fry" },
                         sound: "stirSound"
                     }
                 ],
                 result: {
-                    title: { zh: "Áú¾®ÏºÈÊÍê³É£¡", en: "Longjing Shrimp Complete!" },
-                    description: { zh: "¹§Ï²Äã³É¹¦ÖÆ×÷ÁË¾­µäµÄÕã²ËÁú¾®ÏºÈÊ£¡ÕâµÀ²ËÏºÈÊÏÊÄÛ£¬²èÏãÇåĞÂ£¬É«Ôóµ­ÑÅ£¬ÌåÏÖÁËÕã²ËÇåÏÊË¬ÄÛµÄÌØÉ«¡£", en: "Congratulations! You've successfully made classic Zhejiang Longjing Shrimp! This dish features tender shrimp, fresh tea aroma, elegant color, reflecting Zhejiang cuisine's characteristics of freshness and tenderness." },
+                    title: { zh: "é¾™äº•è™¾ä»å®Œæˆï¼", en: "Longjing Shrimp Complete!" },
+                    description: { zh: "æ­å–œä½ æˆåŠŸåˆ¶ä½œäº†ç»å…¸çš„æµ™èœé¾™äº•è™¾ä»ï¼è¿™é“èœè™¾ä»é²œå«©ï¼ŒèŒ¶é¦™æ¸…æ–°ï¼Œè‰²æ³½æ·¡é›…ï¼Œä½“ç°äº†æµ™èœæ¸…é²œçˆ½å«©çš„ç‰¹è‰²ã€‚", en: "Congratulations! You've successfully made classic Zhejiang Longjing Shrimp! This dish features tender shrimp, fresh tea aroma, elegant color, reflecting Zhejiang cuisine's characteristics of freshness and tenderness." },
                     image: "https://th.bing.com/th/id/R.651715b0f218d823dab10019985c0eaf?rik=pFqKiHUFOz8fmw&riu=http%3a%2f%2fphotocdn.sohu.com%2f20160101%2fmp51732372_1451590226336_1_th.jpeg&ehk=81E6D7ykHMyRfbSs%2bSGX5sDeSDnNtn9aWmfgcoMsAu4%3d&risl=&pid=ImgRaw&r=0",
                     icon: "fas fa-shrimp"
                 }
             },
             {
                 id: 7,
-                name: { zh: "Ãö²Ë", en: "Fujian Cuisine" },
-                dish: { zh: "¼¦ÌÀÙàº£°ö", en: "Sea Clam in Chicken Soup" },
+                name: { zh: "é—½èœ", en: "Fujian Cuisine" },
+                dish: { zh: "é¸¡æ±¤æ±†æµ·èšŒ", en: "Sea Clam in Chicken Soup" },
                 icon: "fas fa-water",
                 color: "#0077b6",
                 ingredients: [
-                    { name: { zh: "º£°ö", en: "Sea Clams" }, icon: "fas fa-water", collected: false },
-                    { name: { zh: "¼¦Èâ", en: "Chicken" }, icon: "fas fa-drumstick-bite", collected: false },
-                    { name: { zh: "»ğÍÈ", en: "Ham" }, icon: "fas fa-bacon", collected: false },
-                    { name: { zh: "Ïã¹½", en: "Mushrooms" }, icon: "fas fa-seedling", collected: false },
-                    { name: { zh: "½ª", en: "Ginger" }, icon: "fas fa-leaf", collected: false },
-                    { name: { zh: "ÁÏ¾Æ", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
-                    { name: { zh: "ÑÎ", en: "Salt" }, icon: "fas fa-mortar-pestle", collected: false }
+                    { name: { zh: "æµ·èšŒ", en: "Sea Clams" }, icon: "fas fa-water", collected: false },
+                    { name: { zh: "é¸¡è‚‰", en: "Chicken" }, icon: "fas fa-drumstick-bite", collected: false },
+                    { name: { zh: "ç«è…¿", en: "Ham" }, icon: "fas fa-bacon", collected: false },
+                    { name: { zh: "é¦™è‡", en: "Mushrooms" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "å§œ", en: "Ginger" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "æ–™é…’", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
+                    { name: { zh: "ç›", en: "Salt" }, icon: "fas fa-mortar-pestle", collected: false }
                 ],
                 steps: [
                     {
-                        title: { zh: "×¼±¸Ê³²Ä", en: "Prepare Ingredients" },
-                        description: { zh: "º£°öÏ´¾»£¬¼¦ÈâÇĞ¿é£¬»ğÍÈÇĞÆ¬£¬Ïã¹½Åİ·¢£¬½ªÇĞÆ¬¡£", en: "Clean sea clams, cut chicken into pieces, slice ham, soak mushrooms, slice ginger." },
+                        title: { zh: "å‡†å¤‡é£Ÿæ", en: "Prepare Ingredients" },
+                        description: { zh: "æµ·èšŒæ´—å‡€ï¼Œé¸¡è‚‰åˆ‡å—ï¼Œç«è…¿åˆ‡ç‰‡ï¼Œé¦™è‡æ³¡å‘ï¼Œå§œåˆ‡ç‰‡ã€‚", en: "Clean sea clams, cut chicken into pieces, slice ham, soak mushrooms, slice ginger." },
                         icon: "fas fa-utensils",
-                        interaction: { zh: "µã»÷×¼±¸Ê³²Ä", en: "Click to prepare ingredients" },
+                        interaction: { zh: "ç‚¹å‡»å‡†å¤‡é£Ÿæ", en: "Click to prepare ingredients" },
                         sound: "chopSound"
                     },
                     {
-                        title: { zh: "ìÀÖó¼¦ÌÀ", en: "Simmer Chicken Soup" },
-                        description: { zh: "½«¼¦Èâ¡¢»ğÍÈ¡¢Ïã¹½ºÍ½ªÆ¬·ÅÈë¹øÖĞ£¬¼Ó×ãÁ¿Ë®£¬´ó»ğÉÕ¿ªºó×ªĞ¡»ğìÀÖó1Ğ¡Ê±£¬ÖÆ³ÉÇå¼¦ÌÀ¡£", en: "Put chicken, ham, mushrooms and ginger slices in pot, add enough water, bring to boil then reduce heat and simmer for 1 hour to make clear chicken soup." },
+                        title: { zh: "ç‚–ç…®é¸¡æ±¤", en: "Simmer Chicken Soup" },
+                        description: { zh: "å°†é¸¡è‚‰ã€ç«è…¿ã€é¦™è‡å’Œå§œç‰‡æ”¾å…¥é”…ä¸­ï¼ŒåŠ è¶³é‡æ°´ï¼Œå¤§ç«çƒ§å¼€åè½¬å°ç«ç‚–ç…®1å°æ—¶ï¼Œåˆ¶æˆæ¸…é¸¡æ±¤ã€‚", en: "Put chicken, ham, mushrooms and ginger slices in pot, add enough water, bring to boil then reduce heat and simmer for 1 hour to make clear chicken soup." },
                         icon: "fas fa-temperature-high",
-                        interaction: { zh: "µã»÷ìÀÖó¼¦ÌÀ", en: "Click to simmer chicken soup" },
+                        interaction: { zh: "ç‚¹å‡»ç‚–ç…®é¸¡æ±¤", en: "Click to simmer chicken soup" },
                         sound: "steamSound"
                     },
                     {
-                        title: { zh: "ÙàÌÌº£°ö", en: "Blanch Sea Clams" },
-                        description: { zh: "ÁíÆğÒ»¹øË®ÉÕ¿ª£¬·ÅÈëº£°öÙàÌÌÖÁ¿ª¿Ú£¬Á¢¼´ÀÌ³ö£¬È¥³ıÒ»°ë°ö¿Ç¡£", en: "Boil another pot of water, add sea clams and blanch until shells open, remove immediately, remove half of each shell." },
+                        title: { zh: "æ±†çƒ«æµ·èšŒ", en: "Blanch Sea Clams" },
+                        description: { zh: "å¦èµ·ä¸€é”…æ°´çƒ§å¼€ï¼Œæ”¾å…¥æµ·èšŒæ±†çƒ«è‡³å¼€å£ï¼Œç«‹å³æå‡ºï¼Œå»é™¤ä¸€åŠèšŒå£³ã€‚", en: "Boil another pot of water, add sea clams and blanch until shells open, remove immediately, remove half of each shell." },
                         icon: "fas fa-tint",
-                        interaction: { zh: "µã»÷ÙàÌÌº£°ö", en: "Click to blanch sea clams" },
+                        interaction: { zh: "ç‚¹å‡»æ±†çƒ«æµ·èšŒ", en: "Click to blanch sea clams" },
                         sound: "splashSound"
                     },
                     {
-                        title: { zh: "×éºÏ²ËÆ·", en: "Combine Dish" },
-                        description: { zh: "½«´¦ÀíºÃµÄº£°ö·ÅÈëÌÀÍëÖĞ£¬ÂË³öÇå¼¦ÌÀ£¬È¥µô¼¦ÈâµÈ¹ÌÌå£¬½«ÈÈ¼¦ÌÀÁÜÔÚº£°öÉÏ¡£", en: "Place prepared sea clams in soup bowl, strain clear chicken soup, remove solid ingredients like chicken, pour hot chicken soup over sea clams." },
+                        title: { zh: "ç»„åˆèœå“", en: "Combine Dish" },
+                        description: { zh: "å°†å¤„ç†å¥½çš„æµ·èšŒæ”¾å…¥æ±¤ç¢—ä¸­ï¼Œæ»¤å‡ºæ¸…é¸¡æ±¤ï¼Œå»æ‰é¸¡è‚‰ç­‰å›ºä½“ï¼Œå°†çƒ­é¸¡æ±¤æ·‹åœ¨æµ·èšŒä¸Šã€‚", en: "Place prepared sea clams in soup bowl, strain clear chicken soup, remove solid ingredients like chicken, pour hot chicken soup over sea clams." },
                         icon: "fas fa-random",
-                        interaction: { zh: "µã»÷×éºÏ²ËÆ·", en: "Click to combine dish" },
+                        interaction: { zh: "ç‚¹å‡»ç»„åˆèœå“", en: "Click to combine dish" },
                         sound: "pourSound"
                     },
                     {
-                        title: { zh: "µ÷Î¶Íê³É", en: "Season and Complete" },
-                        description: { zh: "¸ù¾İ¿ÚÎ¶¼ÓÈëÊÊÁ¿ÑÎµ÷Î¶£¬ÈöÉÏÉÙĞí´Ğ»¨¡£¼¦ÌÀÙàº£°öÍê³É£¡", en: "Add appropriate amount of salt to taste, sprinkle with chopped green onion. Sea Clam in Chicken Soup is ready!" },
+                        title: { zh: "è°ƒå‘³å®Œæˆ", en: "Season and Complete" },
+                        description: { zh: "æ ¹æ®å£å‘³åŠ å…¥é€‚é‡ç›è°ƒå‘³ï¼Œæ’’ä¸Šå°‘è®¸è‘±èŠ±ã€‚é¸¡æ±¤æ±†æµ·èšŒå®Œæˆï¼", en: "Add appropriate amount of salt to taste, sprinkle with chopped green onion. Sea Clam in Chicken Soup is ready!" },
                         icon: "fas fa-mortar-pestle",
-                        interaction: { zh: "µã»÷µ÷Î¶Íê³É", en: "Click to season and complete" },
+                        interaction: { zh: "ç‚¹å‡»è°ƒå‘³å®Œæˆ", en: "Click to season and complete" },
                         sound: "bellSound"
                     }
                 ],
                 result: {
-                    title: { zh: "¼¦ÌÀÙàº£°öÍê³É£¡", en: "Sea Clam in Chicken Soup Complete!" },
-                    description: { zh: "¹§Ï²Äã³É¹¦ÖÆ×÷ÁË¾­µäµÄÃö²Ë¼¦ÌÀÙàº£°ö£¡ÕâµÀ²ËÌÀÇåÎ¶ÏÊ£¬º£°ö´àÄÛ£¬¼¦ÈâºÍ»ğÍÈµÄÏÊÎ¶³ä·ÖÈÚºÏ£¬ÌåÏÖÁËÃö²Ë×¢ÖØÌÀ²ËµÄÌØÉ«¡£", en: "Congratulations! You've successfully made classic Fujian Sea Clam in Chicken Soup! This dish features clear, flavorful soup, crisp and tender sea clams, fully integrated umami from chicken and ham, reflecting Fujian cuisine's emphasis on soup dishes." },
+                    title: { zh: "é¸¡æ±¤æ±†æµ·èšŒå®Œæˆï¼", en: "Sea Clam in Chicken Soup Complete!" },
+                    description: { zh: "æ­å–œä½ æˆåŠŸåˆ¶ä½œäº†ç»å…¸çš„é—½èœé¸¡æ±¤æ±†æµ·èšŒï¼è¿™é“èœæ±¤æ¸…å‘³é²œï¼Œæµ·èšŒè„†å«©ï¼Œé¸¡è‚‰å’Œç«è…¿çš„é²œå‘³å……åˆ†èåˆï¼Œä½“ç°äº†é—½èœæ³¨é‡æ±¤èœçš„ç‰¹è‰²ã€‚", en: "Congratulations! You've successfully made classic Fujian Sea Clam in Chicken Soup! This dish features clear, flavorful soup, crisp and tender sea clams, fully integrated umami from chicken and ham, reflecting Fujian cuisine's emphasis on soup dishes." },
                     image: "https://th.bing.com/th/id/R.fc73bdc71c9f828d34b4ac1b71359d28?rik=wSX7%2fYrahKmxRg&riu=http%3a%2f%2fi2.kknews.cc%2fVEtPLCGBRv_LVaPIdZLLZrw5OpCeza8kHcaUB17KtPk%2f0.jpg&ehk=6SuYYnHvJI7dI0YOEAhCR6hrY0QqhsHIVcDRQ7lN01s%3d&risl=&pid=ImgRaw&r=0",
                     icon: "fas fa-water"
                 }
             },
             {
                 id: 8,
-                name: { zh: "»Õ²Ë", en: "Anhui Cuisine" },
-                dish: { zh: "µ¶°åÏã", en: "Dao Ban Xiang (Salted Pork)" },
+                name: { zh: "å¾½èœ", en: "Anhui Cuisine" },
+                dish: { zh: "åˆ€æ¿é¦™", en: "Dao Ban Xiang (Salted Pork)" },
                 icon: "fas fa-bacon",
                 color: "#bc6c25",
                 ingredients: [
-                    { name: { zh: "ÏÌÈâ", en: "Salted Pork" }, icon: "fas fa-bacon", collected: false },
-                    { name: { zh: "ÖñËñ", en: "Bamboo Shoots" }, icon: "fas fa-seedling", collected: false },
-                    { name: { zh: "°ÙÒ¶½á", en: "Tofu Knots" }, icon: "fas fa-seedling", collected: false },
-                    { name: { zh: "½ª", en: "Ginger" }, icon: "fas fa-leaf", collected: false },
-                    { name: { zh: "ÁÏ¾Æ", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
-                    { name: { zh: "´Ğ", en: "Green Onion" }, icon: "fas fa-leaf", collected: false }
+                    { name: { zh: "å’¸è‚‰", en: "Salted Pork" }, icon: "fas fa-bacon", collected: false },
+                    { name: { zh: "ç«¹ç¬‹", en: "Bamboo Shoots" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "ç™¾å¶ç»“", en: "Tofu Knots" }, icon: "fas fa-seedling", collected: false },
+                    { name: { zh: "å§œ", en: "Ginger" }, icon: "fas fa-leaf", collected: false },
+                    { name: { zh: "æ–™é…’", en: "Cooking Wine" }, icon: "fas fa-wine-bottle", collected: false },
+                    { name: { zh: "è‘±", en: "Green Onion" }, icon: "fas fa-leaf", collected: false }
                 ],
                 steps: [
                     {
-                        title: { zh: "×¼±¸Ê³²Ä", en: "Prepare Ingredients" },
-                        description: { zh: "ÏÌÈâÇĞÆ¬£¬ÖñËñÇĞ¿é£¬°ÙÒ¶½áÏ´¾»£¬½ªÇĞÆ¬£¬´ĞÇĞ¶Î¡£", en: "Slice salted pork, cut bamboo shoots into pieces, wash tofu knots, slice ginger, cut green onion into sections." },
+                        title: { zh: "å‡†å¤‡é£Ÿæ", en: "Prepare Ingredients" },
+                        description: { zh: "å’¸è‚‰åˆ‡ç‰‡ï¼Œç«¹ç¬‹åˆ‡å—ï¼Œç™¾å¶ç»“æ´—å‡€ï¼Œå§œåˆ‡ç‰‡ï¼Œè‘±åˆ‡æ®µã€‚", en: "Slice salted pork, cut bamboo shoots into pieces, wash tofu knots, slice ginger, cut green onion into sections." },
                         icon: "fas fa-utensils",
-                        interaction: { zh: "µã»÷×¼±¸Ê³²Ä", en: "Click to prepare ingredients" },
+                        interaction: { zh: "ç‚¹å‡»å‡†å¤‡é£Ÿæ", en: "Click to prepare ingredients" },
                         sound: "chopSound"
                     },
                     {
-                        title: { zh: "ÙàÌÌÏÌÈâ", en: "Blanch Salted Pork" },
-                        description: { zh: "½«ÏÌÈâÆ¬·ÅÈë·ĞË®ÖĞÙàÌÌ2·ÖÖÓ£¬È¥³ı²¿·ÖÏÌÎ¶ºÍÓÍÖ¬£¬ÀÌ³ö±¸ÓÃ¡£", en: "Put salted pork slices in boiling water and blanch for 2 minutes to remove some saltiness and fat, remove and set aside." },
+                        title: { zh: "æ±†çƒ«å’¸è‚‰", en: "Blanch Salted Pork" },
+                        description: { zh: "å°†å’¸è‚‰ç‰‡æ”¾å…¥æ²¸æ°´ä¸­æ±†çƒ«2åˆ†é’Ÿï¼Œå»é™¤éƒ¨åˆ†å’¸å‘³å’Œæ²¹è„‚ï¼Œæå‡ºå¤‡ç”¨ã€‚", en: "Put salted pork slices in boiling water and blanch for 2 minutes to remove some saltiness and fat, remove and set aside." },
                         icon: "fas fa-tint",
-                        interaction: { zh: "µã»÷ÙàÌÌÏÌÈâ", en: "Click to blanch salted pork" },
+                        interaction: { zh: "ç‚¹å‡»æ±†çƒ«å’¸è‚‰", en: "Click to blanch salted pork" },
                         sound: "splashSound"
                     },
                     {
-                        title: { zh: "ìÀÖóÊ³²Ä", en: "Simmer Ingredients" },
-                        description: { zh: "¹øÖĞ¼ÓÈëÊÊÁ¿Ë®£¬·ÅÈëÏÌÈâÆ¬¡¢ÖñËñ¡¢°ÙÒ¶½á¡¢½ªÆ¬ºÍ´Ğ¶Î£¬´ó»ğÉÕ¿ªºó×ªĞ¡»ğìÀÖó30·ÖÖÓ¡£", en: "Add appropriate amount of water to pot, add salted pork slices, bamboo shoots, tofu knots, ginger slices and green onion sections, bring to boil then reduce heat and simmer for 30 minutes." },
+                        title: { zh: "ç‚–ç…®é£Ÿæ", en: "Simmer Ingredients" },
+                        description: { zh: "é”…ä¸­åŠ å…¥é€‚é‡æ°´ï¼Œæ”¾å…¥å’¸è‚‰ç‰‡ã€ç«¹ç¬‹ã€ç™¾å¶ç»“ã€å§œç‰‡å’Œè‘±æ®µï¼Œå¤§ç«çƒ§å¼€åè½¬å°ç«ç‚–ç…®30åˆ†é’Ÿã€‚", en: "Add appropriate amount of water to pot, add salted pork slices, bamboo shoots, tofu knots, ginger slices and green onion sections, bring to boil then reduce heat and simmer for 30 minutes." },
                         icon: "fas fa-temperature-high",
-                        interaction: { zh: "µã»÷ìÀÖóÊ³²Ä", en: "Click to simmer ingredients" },
+                        interaction: { zh: "ç‚¹å‡»ç‚–ç…®é£Ÿæ", en: "Click to simmer ingredients" },
                         sound: "steamSound"
                     },
                     {
-                        title: { zh: "°ÚÅÌÉÏ×À", en: "Plate and Serve" },
-                        description: { zh: "½«ìÀÖóºÃµÄÊ³²ÄÀÌ³ö£¬ÔÚ´«Í³µÄÄ¾ÖÆµ¶°åÉÏ°ÚºÃ¡£µ¶°åÏãÍê³É£¡", en: "Remove simmered ingredients, arrange on traditional wooden cutting board. Dao Ban Xiang is ready!" },
+                        title: { zh: "æ‘†ç›˜ä¸Šæ¡Œ", en: "Plate and Serve" },
+                        description: { zh: "å°†ç‚–ç…®å¥½çš„é£Ÿææå‡ºï¼Œåœ¨ä¼ ç»Ÿçš„æœ¨åˆ¶åˆ€æ¿ä¸Šæ‘†å¥½ã€‚åˆ€æ¿é¦™å®Œæˆï¼", en: "Remove simmered ingredients, arrange on traditional wooden cutting board. Dao Ban Xiang is ready!" },
                         icon: "fas fa-utensil-spoon",
-                        interaction: { zh: "µã»÷°ÚÅÌÉÏ×À", en: "Click to plate and serve" },
+                        interaction: { zh: "ç‚¹å‡»æ‘†ç›˜ä¸Šæ¡Œ", en: "Click to plate and serve" },
                         sound: "plateSound"
                     }
                 ],
                 result: {
-                    title: { zh: "µ¶°åÏãÍê³É£¡", en: "Dao Ban Xiang Complete!" },
-                    description: { zh: "¹§Ï²Äã³É¹¦ÖÆ×÷ÁË¾­µäµÄ»Õ²Ëµ¶°åÏã£¡ÕâµÀ²ËÏÌÏãÊÊ¿Ú£¬ÖñËñÇå´à£¬°ÙÒ¶½áÎüÊÕÁËÈâÖ­µÄÏÊÃÀ£¬ÊÇ°²»ÕµØÇøµÄ´«Í³Å©¼Ò²Ë¡£", en: "Congratulations! You've successfully made classic Anhui Dao Ban Xiang! This dish is savory and tasty, bamboo shoots are crisp, tofu knots absorb delicious meat juices, a traditional farmhouse dish from Anhui region." },
+                    title: { zh: "åˆ€æ¿é¦™å®Œæˆï¼", en: "Dao Ban Xiang Complete!" },
+                    description: { zh: "æ­å–œä½ æˆåŠŸåˆ¶ä½œäº†ç»å…¸çš„å¾½èœåˆ€æ¿é¦™ï¼è¿™é“èœå’¸é¦™é€‚å£ï¼Œç«¹ç¬‹æ¸…è„†ï¼Œç™¾å¶ç»“å¸æ”¶äº†è‚‰æ±çš„é²œç¾ï¼Œæ˜¯å®‰å¾½åœ°åŒºçš„ä¼ ç»Ÿå†œå®¶èœã€‚", en: "Congratulations! You've successfully made classic Anhui Dao Ban Xiang! This dish is savory and tasty, bamboo shoots are crisp, tofu knots absorb delicious meat juices, a traditional farmhouse dish from Anhui region." },
                     image: "https://picb.zhimg.com/v2-e7887669cf01fefe85c3cebe235cae8a_r.jpg",
                     icon: "fas fa-bacon"
                 }
             }
         ];
 
-        // ÓÎÏ·×´Ì¬
+        // æ¸¸æˆçŠ¶æ€
         let gameState = {
             selectedCuisine: null,
             currentStep: 0,
             isCooking: false,
             audioEnabled: true,
             ingredientsCollected: 0,
-            language: "zh" // Ä¬ÈÏÖĞÎÄ
+            language: "zh" // é»˜è®¤ä¸­æ–‡
         };
 
-        // DOMÔªËØ
+        // DOMå…ƒç´ 
         const cuisineGrid = document.getElementById('cuisineGrid');
         const startSection = document.getElementById('startSection');
         const startCookingBtn = document.getElementById('startCookingBtn');
@@ -1096,7 +1096,7 @@
         const langCnBtn = document.getElementById('langCn');
         const langEnBtn = document.getElementById('langEn');
 
-        // ÒôÆµÔªËØ
+        // éŸ³é¢‘å…ƒç´ 
         const clickSound = document.getElementById('clickSound');
         const sizzleSound = document.getElementById('sizzleSound');
         const chopSound = document.getElementById('chopSound');
@@ -1112,7 +1112,7 @@
         const marinateSound = document.getElementById('marinateSound');
         const plateSound = document.getElementById('plateSound');
 
-        // ³õÊ¼»¯²ËÏµÑ¡Ôñ
+        // åˆå§‹åŒ–èœç³»é€‰æ‹©
         function initCuisineSelection() {
             cuisineGrid.innerHTML = '';
             
@@ -1134,29 +1134,29 @@
             });
         }
 
-        // ¸ù¾İµ±Ç°ÓïÑÔ»ñÈ¡ÎÄ±¾
+        // æ ¹æ®å½“å‰è¯­è¨€è·å–æ–‡æœ¬
         function getText(textObj) {
             return textObj[gameState.language] || textObj.zh;
         }
 
-        // ÇĞ»»ÓïÑÔ
+        // åˆ‡æ¢è¯­è¨€
         function switchLanguage(lang) {
             gameState.language = lang;
             
-            // ¸üĞÂÓïÑÔ°´Å¥×´Ì¬
+            // æ›´æ–°è¯­è¨€æŒ‰é’®çŠ¶æ€
             langCnBtn.classList.toggle('active', lang === 'zh');
             langEnBtn.classList.toggle('active', lang === 'en');
             
-            // ¸üĞÂËùÓĞ´øÓĞdata-langÊôĞÔµÄÔªËØ
+            // æ›´æ–°æ‰€æœ‰å¸¦æœ‰data-langå±æ€§çš„å…ƒç´ 
             document.querySelectorAll('[data-lang]').forEach(element => {
                 const langKey = element.getAttribute('data-lang');
                 element.style.display = langKey === lang ? 'inline' : 'none';
             });
             
-            // ÖØĞÂäÖÈ¾²ËÏµ¿¨Æ¬
+            // é‡æ–°æ¸²æŸ“èœç³»å¡ç‰‡
             initCuisineSelection();
             
-            // Èç¹ûÒÑ¾­Ñ¡ÔñÁË²ËÏµ£¬¸üĞÂÏÔÊ¾
+            // å¦‚æœå·²ç»é€‰æ‹©äº†èœç³»ï¼Œæ›´æ–°æ˜¾ç¤º
             if (gameState.selectedCuisine) {
                 if (gameState.isCooking) {
                     displayStep();
@@ -1166,38 +1166,38 @@
             }
         }
 
-        // Ñ¡Ôñ²ËÏµ
+        // é€‰æ‹©èœç³»
         function selectCuisine(cuisineId) {
-            // ²¥·Åµã»÷ÒôĞ§
+            // æ’­æ”¾ç‚¹å‡»éŸ³æ•ˆ
             playSound(clickSound);
             
-            // ÒÆ³ıÖ®Ç°Ñ¡ÖĞµÄ¿¨Æ¬
+            // ç§»é™¤ä¹‹å‰é€‰ä¸­çš„å¡ç‰‡
             document.querySelectorAll('.cuisine-card').forEach(card => {
                 card.classList.remove('selected');
             });
             
-            // ±ê¼ÇÑ¡ÖĞµÄ¿¨Æ¬
+            // æ ‡è®°é€‰ä¸­çš„å¡ç‰‡
             const selectedCard = document.querySelector(`.cuisine-card[data-id="${cuisineId}"]`);
             selectedCard.classList.add('selected');
             
-            // ¸üĞÂÓÎÏ·×´Ì¬
+            // æ›´æ–°æ¸¸æˆçŠ¶æ€
             gameState.selectedCuisine = cuisines.find(c => c.id === cuisineId);
             gameState.currentStep = 0;
             gameState.isCooking = false;
             gameState.ingredientsCollected = 0;
             
-            // ÏÔÊ¾¿ªÊ¼°´Å¥
+            // æ˜¾ç¤ºå¼€å§‹æŒ‰é’®
             startSection.style.display = 'flex';
             
-            // ÏÔÊ¾Ê³²Ä
+            // æ˜¾ç¤ºé£Ÿæ
             displayIngredients();
         }
 
-        // ÏÔÊ¾Ê³²Ä
+        // æ˜¾ç¤ºé£Ÿæ
         function displayIngredients() {
             const cuisine = gameState.selectedCuisine;
             ingredientsContainer.innerHTML = `
-                <h3 style="text-align: center; margin-bottom: 20px; color: #ff5e62;">${getText(cuisine.dish)} <span data-lang="zh">ËùĞèÊ³²Ä</span><span data-lang="en" style="display:none;">Required Ingredients</span></h3>
+                <h3 style="text-align: center; margin-bottom: 20px; color: #ff5e62;">${getText(cuisine.dish)} <span data-lang="zh">æ‰€éœ€é£Ÿæ</span><span data-lang="en" style="display:none;">Required Ingredients</span></h3>
                 <div class="ingredients-grid" id="ingredientsList"></div>
             `;
             
@@ -1218,24 +1218,24 @@
             });
         }
 
-        // ¿ªÊ¼Åëâ¿
+        // å¼€å§‹çƒ¹é¥ª
         function startCooking() {
             playSound(bellSound);
             
             gameState.isCooking = true;
             gameState.currentStep = 0;
             
-            // Òş²Ø¿ªÊ¼°´Å¥
+            // éšè—å¼€å§‹æŒ‰é’®
             startSection.style.display = 'none';
             
-            // ÏÔÊ¾²½Öè¿ØÖÆ
+            // æ˜¾ç¤ºæ­¥éª¤æ§åˆ¶
             stepControls.style.display = 'flex';
             
-            // ÏÔÊ¾µÚÒ»²½
+            // æ˜¾ç¤ºç¬¬ä¸€æ­¥
             displayStep();
         }
 
-        // ÏÔÊ¾µ±Ç°²½Öè
+        // æ˜¾ç¤ºå½“å‰æ­¥éª¤
         function displayStep() {
             const cuisine = gameState.selectedCuisine;
             const step = cuisine.steps[gameState.currentStep];
@@ -1244,7 +1244,7 @@
                 <div class="step-container active">
                     <div class="step-title">
                         <span>${getText(step.title)}</span>
-                        <span class="step-counter"><span data-lang="zh">²½Öè</span><span data-lang="en" style="display:none;">Step</span> ${gameState.currentStep + 1}/${cuisine.steps.length}</span>
+                        <span class="step-counter"><span data-lang="zh">æ­¥éª¤</span><span data-lang="en" style="display:none;">Step</span> ${gameState.currentStep + 1}/${cuisine.steps.length}</span>
                     </div>
                     <div class="step-image">
                         <div class="step-image-placeholder">
@@ -1263,10 +1263,10 @@
                 </div>
             `;
             
-            // Ìí¼Ó²½Öè½»»¥ÊÂ¼ş
+            // æ·»åŠ æ­¥éª¤äº¤äº’äº‹ä»¶
             const stepActionBtn = document.getElementById('stepActionBtn');
             stepActionBtn.addEventListener('click', () => {
-                // ²¥·Å²½Öè¶ÔÓ¦µÄÒôĞ§
+                // æ’­æ”¾æ­¥éª¤å¯¹åº”çš„éŸ³æ•ˆ
                 if (step.sound) {
                     const soundElement = document.getElementById(step.sound);
                     if (soundElement) {
@@ -1278,16 +1278,16 @@
                     playSound(clickSound);
                 }
                 
-                // ÊÕ¼¯Ê³²Ä£¨Èç¹ûÊÇµÚÒ»²½£©
+                // æ”¶é›†é£Ÿæï¼ˆå¦‚æœæ˜¯ç¬¬ä¸€æ­¥ï¼‰
                 if (gameState.currentStep === 0) {
                     collectIngredient();
                 }
                 
-                // ¸üĞÂ°´Å¥×´Ì¬
+                // æ›´æ–°æŒ‰é’®çŠ¶æ€
                 stepActionBtn.disabled = true;
-                stepActionBtn.innerHTML = `<i class="fas fa-check"></i> <span data-lang="zh">ÒÑÍê³É</span><span data-lang="en" style="display:none;">Completed</span>`;
+                stepActionBtn.innerHTML = `<i class="fas fa-check"></i> <span data-lang="zh">å·²å®Œæˆ</span><span data-lang="en" style="display:none;">Completed</span>`;
                 
-                // ×Ô¶¯ÏÂÒ»²½£¨Èç¹ûÊÇ×îºóÒ»²½ÔòÏÔÊ¾½á¹û£©
+                // è‡ªåŠ¨ä¸‹ä¸€æ­¥ï¼ˆå¦‚æœæ˜¯æœ€åä¸€æ­¥åˆ™æ˜¾ç¤ºç»“æœï¼‰
                 setTimeout(() => {
                     if (gameState.currentStep === cuisine.steps.length - 1) {
                         showResult();
@@ -1297,27 +1297,27 @@
                 }, 1000);
             });
             
-            // ¸üĞÂ¿ØÖÆ°´Å¥×´Ì¬
+            // æ›´æ–°æ§åˆ¶æŒ‰é’®çŠ¶æ€
             updateControlButtons();
         }
 
-        // ÊÕ¼¯Ê³²Ä
+        // æ”¶é›†é£Ÿæ
         function collectIngredient() {
             const ingredientsList = document.querySelector('.ingredients-grid');
             if (!ingredientsList) return;
             
-            // Ã¿´ÎÊÕ¼¯Ò»¸öÊ³²Ä
+            // æ¯æ¬¡æ”¶é›†ä¸€ä¸ªé£Ÿæ
             const items = ingredientsList.querySelectorAll('.ingredient-item');
             if (gameState.ingredientsCollected < items.length) {
                 items[gameState.ingredientsCollected].classList.add('collected');
                 gameState.ingredientsCollected++;
                 
-                // ²¥·ÅÊÕ¼¯ÒôĞ§
+                // æ’­æ”¾æ”¶é›†éŸ³æ•ˆ
                 playSound(bellSound);
             }
         }
 
-        // ÏÂÒ»²½
+        // ä¸‹ä¸€æ­¥
         function nextStep() {
             playSound(clickSound);
             if (gameState.currentStep < gameState.selectedCuisine.steps.length - 1) {
@@ -1326,7 +1326,7 @@
             }
         }
 
-        // ÉÏÒ»²½
+        // ä¸Šä¸€æ­¥
         function prevStep() {
             playSound(clickSound);
             if (gameState.currentStep > 0) {
@@ -1335,35 +1335,35 @@
             }
         }
 
-        // ¸üĞÂ¿ØÖÆ°´Å¥×´Ì¬
+        // æ›´æ–°æ§åˆ¶æŒ‰é’®çŠ¶æ€
         function updateControlButtons() {
             prevStepBtn.disabled = gameState.currentStep === 0;
             nextStepBtn.disabled = gameState.currentStep === gameState.selectedCuisine.steps.length - 1;
         }
 
-        // ÏÔÊ¾½á¹û
+        // æ˜¾ç¤ºç»“æœ
         function showResult() {
             playSound(successSound);
             
             const cuisine = gameState.selectedCuisine;
             
-            // Òş²Ø²½Öè¿ØÖÆ
+            // éšè—æ­¥éª¤æ§åˆ¶
             stepControls.style.display = 'none';
             
-            // ÏÔÊ¾½á¹ûÃæ°å
+            // æ˜¾ç¤ºç»“æœé¢æ¿
             resultPanel.style.display = 'block';
             
-            // Éú³ÉÆÀ·Ö£¨»ùÓÚÊÕ¼¯µÄÊ³²ÄÊıÁ¿£©
+            // ç”Ÿæˆè¯„åˆ†ï¼ˆåŸºäºæ”¶é›†çš„é£Ÿææ•°é‡ï¼‰
             const rating = Math.min(5, Math.ceil((gameState.ingredientsCollected / cuisine.ingredients.length) * 5));
-            const stars = '¡ï'.repeat(rating) + '¡î'.repeat(5 - rating);
+            const stars = 'â˜…'.repeat(rating) + 'â˜†'.repeat(5 - rating);
             
-            // ¼ì²éÊÇ·ñÓĞ×¨ÃÅµÄ³ÉÆ·Í¼Æ¬
+            // æ£€æŸ¥æ˜¯å¦æœ‰ä¸“é—¨çš„æˆå“å›¾ç‰‡
             let resultImageContent;
             if (cuisine.result.image) {
-                // Ê¹ÓÃÖ¸¶¨µÄ³ÉÆ·Í¼Æ¬
+                // ä½¿ç”¨æŒ‡å®šçš„æˆå“å›¾ç‰‡
                 resultImageContent = `<div class="result-image" style="background-image: url('${cuisine.result.image}');"></div>`;
             } else {
-                // Èç¹ûÃ»ÓĞÍ¼Æ¬£¬Ê¹ÓÃĞéÄâÍ¼Æ¬
+                // å¦‚æœæ²¡æœ‰å›¾ç‰‡ï¼Œä½¿ç”¨è™šæ‹Ÿå›¾ç‰‡
                 resultImageContent = `
                     <div class="result-image">
                         <div class="result-image-placeholder">
@@ -1382,97 +1382,97 @@
                     ${resultImageContent}
                     <div class="result-message">${getText(cuisine.result.description)}</div>
                     <div class="result-rating">
-                        <span data-lang="zh">ÄãµÄÆÀ·Ö£º</span><span data-lang="en" style="display:none;">Your rating:</span> ${stars} (${rating}/5)
+                        <span data-lang="zh">ä½ çš„è¯„åˆ†ï¼š</span><span data-lang="en" style="display:none;">Your rating:</span> ${stars} (${rating}/5)
                     </div>
                 </div>
             `;
             
-            // ¹ö¶¯µ½½á¹ûÇøÓò
+            // æ»šåŠ¨åˆ°ç»“æœåŒºåŸŸ
             resultPanel.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // ÖØĞÂ¿ªÊ¼
+        // é‡æ–°å¼€å§‹
         function restartGame() {
             playSound(clickSound);
             
-            // ÖØÖÃÓÎÏ·×´Ì¬
+            // é‡ç½®æ¸¸æˆçŠ¶æ€
             gameState.currentStep = 0;
             gameState.isCooking = false;
             gameState.ingredientsCollected = 0;
             
-            // Òş²Ø½á¹ûÃæ°å
+            // éšè—ç»“æœé¢æ¿
             resultPanel.style.display = 'none';
             
-            // ÏÔÊ¾¿ªÊ¼°´Å¥
+            // æ˜¾ç¤ºå¼€å§‹æŒ‰é’®
             startSection.style.display = 'flex';
             
-            // ÖØÖÃÊ³²ÄÏÔÊ¾
+            // é‡ç½®é£Ÿææ˜¾ç¤º
             displayIngredients();
             
-            // Çå¿Õ²½ÖèÈİÆ÷
-            stepsContainer.innerHTML = `<p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">µã»÷"¿ªÊ¼Åëâ¿"°´Å¥ºó£¬½«ÏÔÊ¾Åëâ¿²½Öè</p>
+            // æ¸…ç©ºæ­¥éª¤å®¹å™¨
+            stepsContainer.innerHTML = `<p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">ç‚¹å‡»"å¼€å§‹çƒ¹é¥ª"æŒ‰é’®åï¼Œå°†æ˜¾ç¤ºçƒ¹é¥ªæ­¥éª¤</p>
                                        <p style="text-align: center; padding: 30px 0; color: #888; display: none;" data-lang="en">After clicking "Start Cooking", cooking steps will be displayed</p>`;
             
-            // ¹ö¶¯µ½¶¥²¿
+            // æ»šåŠ¨åˆ°é¡¶éƒ¨
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ³¢ÊÔÁíÒ»µÀ²Ë
+        // å°è¯•å¦ä¸€é“èœ
         function tryAnotherDish() {
             playSound(clickSound);
             
-            // ÖØÖÃÓÎÏ·×´Ì¬
+            // é‡ç½®æ¸¸æˆçŠ¶æ€
             gameState.selectedCuisine = null;
             gameState.currentStep = 0;
             gameState.isCooking = false;
             gameState.ingredientsCollected = 0;
             
-            // Òş²Ø½á¹ûÃæ°åºÍ²½Öè¿ØÖÆ
+            // éšè—ç»“æœé¢æ¿å’Œæ­¥éª¤æ§åˆ¶
             resultPanel.style.display = 'none';
             stepControls.style.display = 'none';
             
-            // Òş²Ø¿ªÊ¼°´Å¥
+            // éšè—å¼€å§‹æŒ‰é’®
             startSection.style.display = 'none';
             
-            // ÖØÖÃÊ³²ÄÏÔÊ¾
-            ingredientsContainer.innerHTML = `<p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">Ñ¡Ôñ²ËÏµºó£¬½«ÏÔÊ¾ËùĞèÊ³²Ä</p>
+            // é‡ç½®é£Ÿææ˜¾ç¤º
+            ingredientsContainer.innerHTML = `<p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">é€‰æ‹©èœç³»åï¼Œå°†æ˜¾ç¤ºæ‰€éœ€é£Ÿæ</p>
                                             <p style="text-align: center; padding: 30px 0; color: #888; display: none;" data-lang="en">After selecting a cuisine, required ingredients will be displayed</p>`;
             
-            // ÖØÖÃ²½ÖèÈİÆ÷
-            stepsContainer.innerHTML = `<p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">µã»÷"¿ªÊ¼Åëâ¿"°´Å¥ºó£¬½«ÏÔÊ¾Åëâ¿²½Öè</p>
+            // é‡ç½®æ­¥éª¤å®¹å™¨
+            stepsContainer.innerHTML = `<p style="text-align: center; padding: 30px 0; color: #888;" data-lang="zh">ç‚¹å‡»"å¼€å§‹çƒ¹é¥ª"æŒ‰é’®åï¼Œå°†æ˜¾ç¤ºçƒ¹é¥ªæ­¥éª¤</p>
                                        <p style="text-align: center; padding: 30px 0; color: #888; display: none;" data-lang="en">After clicking "Start Cooking", cooking steps will be displayed</p>`;
             
-            // È¡ÏûÑ¡ÖĞ²ËÏµ¿¨Æ¬
+            // å–æ¶ˆé€‰ä¸­èœç³»å¡ç‰‡
             document.querySelectorAll('.cuisine-card').forEach(card => {
                 card.classList.remove('selected');
             });
             
-            // ¹ö¶¯µ½¶¥²¿
+            // æ»šåŠ¨åˆ°é¡¶éƒ¨
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ²¥·ÅÒôĞ§
+        // æ’­æ”¾éŸ³æ•ˆ
         function playSound(audioElement) {
             if (!gameState.audioEnabled) return;
             
             audioElement.currentTime = 0;
-            audioElement.play().catch(e => console.log("ÒôÆµ²¥·ÅÊ§°Ü:", e));
+            audioElement.play().catch(e => console.log("éŸ³é¢‘æ’­æ”¾å¤±è´¥:", e));
         }
 
-        // ÇĞ»»ÒôÆµ×´Ì¬
+        // åˆ‡æ¢éŸ³é¢‘çŠ¶æ€
         function toggleAudio() {
             gameState.audioEnabled = !gameState.audioEnabled;
             
             if (gameState.audioEnabled) {
                 audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
-                bgMusic.play().catch(e => console.log("±³¾°ÒôÀÖ²¥·ÅÊ§°Ü:", e));
+                bgMusic.play().catch(e => console.log("èƒŒæ™¯éŸ³ä¹æ’­æ”¾å¤±è´¥:", e));
             } else {
                 audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
                 bgMusic.pause();
             }
         }
 
-        // ÊÂ¼ş¼àÌı
+        // äº‹ä»¶ç›‘å¬
         startCookingBtn.addEventListener('click', startCooking);
         prevStepBtn.addEventListener('click', prevStep);
         nextStepBtn.addEventListener('click', nextStep);
@@ -1482,24 +1482,24 @@
         langCnBtn.addEventListener('click', () => switchLanguage('zh'));
         langEnBtn.addEventListener('click', () => switchLanguage('en'));
 
-        // ³õÊ¼»¯ÓÎÏ·
+        // åˆå§‹åŒ–æ¸¸æˆ
         function initGame() {
             initCuisineSelection();
             
-            // ³õÊ¼»¯ÓïÑÔÏÔÊ¾
+            // åˆå§‹åŒ–è¯­è¨€æ˜¾ç¤º
             switchLanguage('zh');
             
-            // ³¢ÊÔ×Ô¶¯²¥·Å±³¾°ÒôÀÖ£¨ÓÃ»§½»»¥ºó£©
+            // å°è¯•è‡ªåŠ¨æ’­æ”¾èƒŒæ™¯éŸ³ä¹ï¼ˆç”¨æˆ·äº¤äº’åï¼‰
             document.addEventListener('click', function initAudio() {
                 if (gameState.audioEnabled) {
                     bgMusic.volume = 0.3;
-                    bgMusic.play().catch(e => console.log("±³¾°ÒôÀÖ²¥·ÅÊ§°Ü:", e));
+                    bgMusic.play().catch(e => console.log("èƒŒæ™¯éŸ³ä¹æ’­æ”¾å¤±è´¥:", e));
                 }
                 document.removeEventListener('click', initAudio);
             });
         }
 
-        // Ò³Ãæ¼ÓÔØÍê³Éºó³õÊ¼»¯ÓÎÏ·
+        // é¡µé¢åŠ è½½å®Œæˆååˆå§‹åŒ–æ¸¸æˆ
         window.addEventListener('DOMContentLoaded', initGame);
     </script>
 </body>
